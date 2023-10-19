@@ -1,6 +1,7 @@
 # COMP3000 PROJECT
 
 # PERSONAL BLOGGING PLATFORM - RONIA PALATTY
+### Supervisor: Vasilios Kelefouras
 
 ## Project Vision
 RELEASE YOUR CREATVITY. My ambition is to build an innovative outlet to view and share anything and everything you are passionate about. 
