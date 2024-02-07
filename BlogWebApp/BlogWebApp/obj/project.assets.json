@@ -11750,11 +11750,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ronia\\source\\repos\\BlogWebApp\\BlogWebApp\\BlogWebApp.csproj",
+      "projectUniqueName": "C:\\Users\\ronia\\source\\repos\\COMP3000_PROJECT_rpalatty1\\BlogWebApp\\BlogWebApp\\BlogWebApp.csproj",
       "projectName": "BlogWebApp",
-      "projectPath": "C:\\Users\\ronia\\source\\repos\\BlogWebApp\\BlogWebApp\\BlogWebApp.csproj",
+      "projectPath": "C:\\Users\\ronia\\source\\repos\\COMP3000_PROJECT_rpalatty1\\BlogWebApp\\BlogWebApp\\BlogWebApp.csproj",
       "packagesPath": "C:\\Users\\ronia\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ronia\\source\\repos\\BlogWebApp\\BlogWebApp\\obj\\",
+      "outputPath": "C:\\Users\\ronia\\source\\repos\\COMP3000_PROJECT_rpalatty1\\BlogWebApp\\BlogWebApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

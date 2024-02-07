@@ -1,7 +1,13 @@
 using BlogWebApp.Data;
 using BlogWebApp.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing.Patterns;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using NuGet.Protocol.Plugins;
+using System.Security.Principal;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,8 +43,9 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+name: "default",
+pattern: "{controller=Home}/{action=Index}/{id?}");
+
 app.MapRazorPages();
 
 app.Run();

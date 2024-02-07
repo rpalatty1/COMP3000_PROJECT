@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "eX2sIVoOWWhw7+yMdVpReRQq+jS0CjyWsR97uSrWoW3ce/7onMVU7kcHsSu0HFxeaNx1hK9uXutqPhBixPI++w==",
+  "dgSpecHash": "RSezkL4LPpqM8o+0CcItXPOfslpwfHA9OcYzlkILLinFSDTOAOJGBrlDawPPXaW48lBWlLIXXa7xn/h/qANepw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ronia\\source\\repos\\BlogWebApp\\BlogWebApp\\BlogWebApp.csproj",
+  "projectFilePath": "C:\\Users\\ronia\\source\\repos\\COMP3000_PROJECT_rpalatty1\\BlogWebApp\\BlogWebApp\\BlogWebApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ronia\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\ronia\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
