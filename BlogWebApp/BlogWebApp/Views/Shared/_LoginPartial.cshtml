@@ -9,7 +9,7 @@
             @{
                 var currentuser = await UserManager.GetUserAsync(User);
             }
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @currentuser.FirstName @currentuser.LastName!</a>
+            <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @currentuser.FirstName @currentuser.LastName!</a>
        
             @*<ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="#">My Profile</a></li>

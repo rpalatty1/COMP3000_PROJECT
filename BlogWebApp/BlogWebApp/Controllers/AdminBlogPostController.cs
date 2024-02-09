@@ -10,88 +10,87 @@ using BlogWebApp.Models;
 
 namespace BlogWebApp.Controllers
 {
-    public class AdminPostsController : Controller
+    public class AdminBlogPostController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public AdminPostsController(ApplicationDbContext context)
+        public AdminBlogPostController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: AdminPosts
+        // GET: AdminBlogPost
         public async Task<IActionResult> Index()
         {
-              return _context.BlogPosts != null ? 
-                          View(await _context.BlogPosts.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.BlogPosts'  is null.");
+              return _context.AdminBlogPosts != null ? 
+                          View(await _context.AdminBlogPosts.ToListAsync()) :
+                          Problem("Entity set 'ApplicationDbContext.AdminBlogPosts'  is null.");
         }
 
-        // GET: AdminPosts/Details/5
+        // GET: AdminBlogPost/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.BlogPosts == null)
+            if (id == null || _context.AdminBlogPosts == null)
             {
                 return NotFound();
             }
 
-            var blogPost = await _context.BlogPosts
+            var adminBlogPost = await _context.AdminBlogPosts
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (blogPost == null)
+            if (adminBlogPost == null)
             {
                 return NotFound();
             }
 
-            return View(blogPost);
+            return View(adminBlogPost);
         }
 
-        // GET: AdminPosts/Create
+        // GET: AdminBlogPost/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: AdminPosts/Create
+        // POST: AdminBlogPost/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Heading,PageTitle,Content,ShortDescription,FeaturedImageUrl,UrlHandle,PublishedDate,Author,Visible")] BlogPost blogPost)
+        public async Task<IActionResult> Create([Bind("Id,Heading,PageTitle,Content,ShortDescription,FeaturedImageUrl,UrlHandle,PublishedDate,Author,Visible")] AdminBlogPost adminBlogPost)
         {
             if (ModelState.IsValid)
             {
-                //blogPost.Id = Guid.NewGuid();
-                _context.Add(blogPost);
+                _context.Add(adminBlogPost);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(blogPost);
+            return View(adminBlogPost);
         }
 
-        // GET: AdminPosts/Edit/5
+        // GET: AdminBlogPost/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.BlogPosts == null)
+            if (id == null || _context.AdminBlogPosts == null)
             {
                 return NotFound();
             }
 
-            var blogPost = await _context.BlogPosts.FindAsync(id);
-            if (blogPost == null)
+            var adminBlogPost = await _context.AdminBlogPosts.FindAsync(id);
+            if (adminBlogPost == null)
             {
                 return NotFound();
             }
-            return View(blogPost);
+            return View(adminBlogPost);
         }
 
-        // POST: AdminPosts/Edit/5
+        // POST: AdminBlogPost/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Heading,PageTitle,Content,ShortDescription,FeaturedImageUrl,UrlHandle,PublishedDate,Author,Visible")] BlogPost blogPost)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Heading,PageTitle,Content,ShortDescription,FeaturedImageUrl,UrlHandle,PublishedDate,Author,Visible")] AdminBlogPost adminBlogPost)
         {
-            if (id != blogPost.Id)
+            if (id != adminBlogPost.Id)
             {
                 return NotFound();
             }
@@ -100,12 +99,12 @@ namespace BlogWebApp.Controllers
             {
                 try
                 {
-                    _context.Update(blogPost);
+                    _context.Update(adminBlogPost);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!BlogPostExists(blogPost.Id))
+                    if (!AdminBlogPostExists(adminBlogPost.Id))
                     {
                         return NotFound();
                     }
@@ -116,49 +115,49 @@ namespace BlogWebApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(blogPost);
+            return View(adminBlogPost);
         }
 
-        // GET: AdminPosts/Delete/5
+        // GET: AdminBlogPost/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.BlogPosts == null)
+            if (id == null || _context.AdminBlogPosts == null)
             {
                 return NotFound();
             }
 
-            var blogPost = await _context.BlogPosts
+            var adminBlogPost = await _context.AdminBlogPosts
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (blogPost == null)
+            if (adminBlogPost == null)
             {
                 return NotFound();
             }
 
-            return View(blogPost);
+            return View(adminBlogPost);
         }
 
-        // POST: AdminPosts/Delete/5
+        // POST: AdminBlogPost/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.BlogPosts == null)
+            if (_context.AdminBlogPosts == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.BlogPosts'  is null.");
+                return Problem("Entity set 'ApplicationDbContext.AdminBlogPosts'  is null.");
             }
-            var blogPost = await _context.BlogPosts.FindAsync(id);
-            if (blogPost != null)
+            var adminBlogPost = await _context.AdminBlogPosts.FindAsync(id);
+            if (adminBlogPost != null)
             {
-                _context.BlogPosts.Remove(blogPost);
+                _context.AdminBlogPosts.Remove(adminBlogPost);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool BlogPostExists(int id)
+        private bool AdminBlogPostExists(int id)
         {
-          return (_context.BlogPosts?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.AdminBlogPosts?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

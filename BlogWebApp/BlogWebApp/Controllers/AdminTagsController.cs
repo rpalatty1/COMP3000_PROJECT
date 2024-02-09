@@ -41,7 +41,7 @@ namespace BlogWebApp.Controllers
         }
 
         // GET: AdminTags/Details
-        public async Task<IActionResult> Details(Guid? id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _applicationDbContext.Tags == null)
             {
@@ -67,11 +67,11 @@ namespace BlogWebApp.Controllers
         // POST: AdminTags/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Guid Id, Name, DisplayName")] Tag tag)
+        public async Task<IActionResult> Create([Bind("Id, Name, DisplayName")] Tag tag)
         {
             if (ModelState.IsValid)
             {
-                tag.Id = Guid.NewGuid();
+                //tag.Id = Guid.NewGuid();
                 _applicationDbContext.Add(tag);
                 await _applicationDbContext.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -80,7 +80,7 @@ namespace BlogWebApp.Controllers
         }
 
         // GET: AdminTags/Edit
-        public async Task<IActionResult> Edit(Guid? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _applicationDbContext.Tags == null)
             {
@@ -99,14 +99,14 @@ namespace BlogWebApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,DisplayName")] Tag tag)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,DisplayName")] Tag tag)
         {
             if (id != tag.Id)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+             if (ModelState.IsValid)
             {
                 try
                 {
@@ -131,7 +131,7 @@ namespace BlogWebApp.Controllers
         }
 
         // GET: AdminTags/Delete
-        public async Task<IActionResult> Delete(Guid? id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _applicationDbContext.Tags == null)
             {
@@ -151,7 +151,7 @@ namespace BlogWebApp.Controllers
         // POST: AdminTags/Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(Guid id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_applicationDbContext.Tags == null)
             {
@@ -166,7 +166,7 @@ namespace BlogWebApp.Controllers
             await _applicationDbContext.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        private bool TagExists(Guid id)
+        private bool TagExists(int id)
         {
             return (_applicationDbContext.Tags?.Any(e => e.Id == id)).GetValueOrDefault();
         }
