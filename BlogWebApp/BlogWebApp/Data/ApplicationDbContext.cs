@@ -24,8 +24,6 @@ namespace BlogWebApp.Data
             : base(options)
         {
         }
-            public DbSet<BlogPost> BlogPosts { get; set; }
-            public DbSet<Tag> Tags { get; set; }
             public DbSet<AdminBlogPost> AdminBlogPosts { get; set; }
 
 

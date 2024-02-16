@@ -22,11 +22,13 @@ namespace BlogWebApp.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public LoginModel(SignInManager<ApplicationUser> signInManager, ILogger<LoginModel> logger)
+        public LoginModel(SignInManager<ApplicationUser> signInManager, ILogger<LoginModel> logger, UserManager<IdentityUser> userManager)
         {
             _signInManager = signInManager;
             _logger = logger;
+            _userManager = userManager;
         }
 
         /// <summary>
@@ -116,6 +118,17 @@ namespace BlogWebApp.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
+
+                    var user = await _userManager.FindByEmailAsync(Input.Email);
+                    var roles = await _userManager.GetRolesAsync(user);
+
+                    if (roles.IndexOf("Admin") != -1)
+                        returnUrl = "/Admin/AdminDashboard";
+                    else if (roles.IndexOf("Author") != -1)
+                        returnUrl = "/Author/AuhtorDashboard";
+                    else if (roles.IndexOf("Subscriber") != -1)
+                        returnUrl = "/Subscriber/SubscriberDashboard";
+
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)

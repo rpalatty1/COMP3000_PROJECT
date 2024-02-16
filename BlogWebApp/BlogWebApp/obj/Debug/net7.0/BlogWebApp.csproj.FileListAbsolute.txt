@@ -524,3 +524,7 @@ C:\Users\ronia\source\repos\COMP3000_PROJECT_rpalatty1\BlogWebApp\BlogWebApp\obj
 C:\Users\ronia\source\repos\COMP3000_PROJECT_rpalatty1\BlogWebApp\BlogWebApp\obj\Debug\net7.0\BlogWebApp.pdb
 C:\Users\ronia\source\repos\COMP3000_PROJECT_rpalatty1\BlogWebApp\BlogWebApp\obj\Debug\net7.0\BlogWebApp.genruntimeconfig.cache
 C:\Users\ronia\source\repos\COMP3000_PROJECT_rpalatty1\BlogWebApp\BlogWebApp\obj\Debug\net7.0\ref\BlogWebApp.dll
+C:\Users\ronia\source\repos\COMP3000_PROJECT_rpalatty1\BlogWebApp\BlogWebApp\bin\Debug\net7.0\BoDi.dll
+C:\Users\ronia\source\repos\COMP3000_PROJECT_rpalatty1\BlogWebApp\BlogWebApp\bin\Debug\net7.0\Gherkin.dll
+C:\Users\ronia\source\repos\COMP3000_PROJECT_rpalatty1\BlogWebApp\BlogWebApp\bin\Debug\net7.0\TechTalk.SpecFlow.dll
+C:\Users\ronia\source\repos\COMP3000_PROJECT_rpalatty1\BlogWebApp\BlogWebApp\bin\Debug\net7.0\SpecFlow.Internal.Json.dll
