@@ -20,6 +20,14 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5EYXNoYm9hcmRcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/ronia/source/repos/COMP3000_PROJECT_rpalatty1/BlogWebApp/BlogWebApp/Areas/Admin/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ronia/source/repos/COMP3000_PROJECT_rpalatty1/BlogWebApp/BlogWebApp/Areas/Admin/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/ronia/source/repos/COMP3000_PROJECT_rpalatty1/BlogWebApp/BlogWebApp/Areas/Author/Views/AuthorDashboard/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQXV0aG9yXFZpZXdzXEF1dGhvckRhc2hib2FyZFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
