@@ -29,6 +29,7 @@
     <Folder Include="Areas\Author\Models\" />
     <Folder Include="Areas\Subscriber\Data\" />
     <Folder Include="Areas\Subscriber\Models\" />
+    <Folder Include="wwwroot\blogImages\category\" />
   </ItemGroup>
 
 </Project>

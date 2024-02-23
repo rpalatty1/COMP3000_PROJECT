@@ -7,17 +7,24 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BlogWebApp.Data;
 using BlogWebApp.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace BlogWebApp.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class CategoriesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _applicationUser;
+        private readonly IWebHostEnvironment _iWebHostEnvironment;
 
-        public CategoriesController(ApplicationDbContext context)
+        public CategoriesController(ApplicationDbContext context, UserManager<ApplicationUser> applicationUser, IWebHostEnvironment iWebHostEnvironment)
         {
             _context = context;
+            _iWebHostEnvironment = iWebHostEnvironment;
+            _applicationUser = applicationUser;
         }
 
         // GET: Admin/Categories
@@ -57,12 +64,27 @@ namespace BlogWebApp.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CategoryName,CategorySlug,DefaultImageUrl,Description,IsActive,Id,CreatedDate,CreatedBy,ModifiedDate,ModifiedBy")] Category category)
+        public async Task<IActionResult> Create([Bind("CategoryName,CategorySlug,DefaultImageUrl,Description,IsActive,Id,CreatedDate,CreatedBy,ModifiedDate,ModifiedBy")] Category category, IFormFile? file)
         {
             if (ModelState.IsValid)
             {
+                string wwwRootPath = _iWebHostEnvironment.WebRootPath;
+                if(file != null)
+                {
+                    string fileName = Guid.NewGuid().ToString();
+                    string uploads = Path.Combine(wwwRootPath, @"blogImages/category");
+                    var extension = Path.GetExtension(file.FileName);
+                    using (var fileStream = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+                    {
+                        file.CopyTo(fileStream);
+                    }
+                    category.DefaultImageUrl = @"\blogImages\category\" + fileName + extension;
+                }
+
+                category.CreatedBy = _applicationUser.GetUserId(HttpContext.User);
                 _context.Add(category);
                 await _context.SaveChangesAsync();
+                TempData["success"] = "Category saved successfully";
                 return RedirectToAction(nameof(Index));
             }
             return View(category);
