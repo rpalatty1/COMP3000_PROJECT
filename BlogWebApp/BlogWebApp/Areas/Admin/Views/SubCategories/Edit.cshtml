@@ -1,45 +1,28 @@
-﻿@model BlogWebApp.Models.Category
+﻿@model BlogWebApp.Models.SubCategory
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
 }
 
-<h1>Create</h1>
+<h1>Edit</h1>
 
-<h4>Category</h4>
+<h4>SubCategory</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create" enctype="multipart/form-data" method="post">
-         @*   <div class="page-body">
-                <form method="post" enctype="multipart/form-data" class="row g-3 p-"></form>
-                    <div class="col-md-12"*@
+        <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="CategoryName" class="control-label"></label>
-                <input asp-for="CategoryName" class="form-control" />
-                <span asp-validation-for="CategoryName" class="text-danger"></span>
+                <label asp-for="SubCategoryName" class="control-label"></label>
+                <input asp-for="SubCategoryName" class="form-control" />
+                <span asp-validation-for="SubCategoryName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CategorySlug" class="control-label"></label>
-                <input asp-for="CategorySlug" class="form-control" />
-                <span asp-validation-for="CategorySlug" class="text-danger"></span>
+                <label asp-for="CategoryId" class="control-label"></label>
+                <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
-                <label asp-for="DefaultImageUrl" class="control-label"></label>
-                <input asp-for="DefaultImageUrl" class="form-control" />
-                <span asp-validation-for="DefaultImageUrl" class="text-danger"></span>
-            </div>*@
-            <div class="col-md-12">
-                <label class="form-label" asp-for="DefaultImageUrl"></label>
-                <input type="file" name="file" id="upload" asp-for="DefaultImageUrl" class="form-control" />
-                <span asp-validation-for="DefaultImageUrl" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
+            <input type="hidden" asp-for="Id" />
             <div class="form-group">
                 <label asp-for="CreatedDate" class="control-label"></label>
                 <input asp-for="CreatedDate" class="form-control" />
@@ -66,7 +49,7 @@
                 </label>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>

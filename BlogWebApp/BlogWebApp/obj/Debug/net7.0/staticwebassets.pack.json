@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\BlogWebApp.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\ronia\\source\\repos\\COMP3000_PROJECT_rpalatty1\\BlogWebApp\\BlogWebApp\\wwwroot\\blogImages\\category\\1a0d78b4-2cd5-47d7-a145-459dbf6ccd16.jpg",
+      "PackagePath": "staticwebassets\\blogImages\\category\\1a0d78b4-2cd5-47d7-a145-459dbf6ccd16.jpg"
+    },
+    {
       "Id": "C:\\Users\\ronia\\source\\repos\\COMP3000_PROJECT_rpalatty1\\BlogWebApp\\BlogWebApp\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

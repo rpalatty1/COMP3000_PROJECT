@@ -26,6 +26,8 @@ namespace BlogWebApp.Data
         }
             public DbSet<AdminBlogPost> AdminBlogPosts { get; set; }
             public DbSet<Category> Category { get; set; }
+            public DbSet<SubCategory> SubCategory { get; set; }
+            public DbSet<BlogImages> BlogImages { get; set; }
 
 
     }
