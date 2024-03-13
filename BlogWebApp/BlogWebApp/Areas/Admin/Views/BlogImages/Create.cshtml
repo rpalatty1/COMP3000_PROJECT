@@ -6,38 +6,45 @@
 
 <h1>Create</h1>
 
-<h4>BlogImages</h4>
+<h4>Blog Images</h4>
 <hr />
 <div class="page-wrapepr">
     <div class="page title">
         <div class="row">
-            <div class="col-sm-6 py-1">
+            @*<div class="col-sm-6 py-1">
                 <h6>Blog Images</h6>
-            </div>
+            </div>*@
         </div>
     </div>
     <div class="page-body">
         <form method="post" enctype="multipart/form-data" class="row g-3 p-3">
+            @*<input type="hidden" asp-for="BlogImages.ApplicationUserId" />*@
+            @*<div class="col-md-6">
+                <label class="form-label" asp-for="BlogImages.CategoryId"></label>
+                <select asp-for="BlogImages.CategoryId" id="ddlCategory" asp-items="@Model.SubCategoryList" class="form-control">
+                    <option disabled selected>---Select Category---</option>
+                </select>
+                <span asp-validation-for="BlogImages.CategoryId" class="text-danger"></span>
+            </div>*@
             <div class="col-md-6">
                 <label class="form-label" asp-for="BlogImages.SubCategoryId"></label>
-                <select asp-for="BlogImages.SubCategoryId" asp-items="Model.SubCategoryList" class="form-control">
-                    <option disabled selected>---Select Category---</option>
+                <select asp-for="BlogImages.SubCategoryId" id="ddlSubCategory" asp-items="@Model.SubCategoryList" class="form-control">
+                    <option disabled selected>---Select Subcategory---</option>
                 </select>
                 <span asp-validation-for="BlogImages.SubCategoryId" class="text-danger"></span>
             </div>
             <div class="col-md-6">
-                <label class="form-label" asp-for="BlogImages.SubCategoryId"></label>
-                <input asp-formaction="BlogImages.BlogTitle" class="form-control" />
-                <span asp-validation-for="BlogImages.SubCategoryId" class="text-danger"></span>
+                <label class="form-label" asp-for="BlogImages.BlogTitle"></label>
+                @*<textarea id="summernote" asp-for="BlogImages.BlogTitle"></textarea>*@
+                <input asp-for="BlogImages.BlogTitle" asp-items="@Model.SubCategoryList" class="form-control" />
+                <span asp-validation-for="BlogImages.BlogTitle" class="text-danger"></span>
             </div>
             <div class="col-md-12">
                 <label class="form-label" asp-for="BlogImages.ImageUrl"></label>
                 <input type="file" name="files" id="upload" multiple class="form-control" />
             </div>
             <div class="col-md-12">
-                <button type="submit" class=" btn btn-success" onclick="return ValidationInput()">
-                <i class="bi bi-plus-circle"></i>
-                </button>
+                <button type="submit" @*class=" btn btn-success"*@ class="btn btn-primary" onclick="return ValidationInput()">Submit</button>
                 <a asp-asp-area="Admin" asp-asp-controller="BlogImages" asp-action="Index" class="btn btn-warning">
                     <i class="bi bi-arrow-left-square"></i>Back to List
                 </a>

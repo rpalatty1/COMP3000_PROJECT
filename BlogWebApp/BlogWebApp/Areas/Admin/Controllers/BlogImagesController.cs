@@ -9,6 +9,9 @@ using BlogWebApp.Data;
 using BlogWebApp.Models;
 using BlogWebApp.Models.ViewModels;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using static System.Net.Mime.MediaTypeNames;
+using BlogWebApp.Data.Migrations;
+using Microsoft.AspNetCore.Identity;
 
 namespace BlogWebApp.Areas.Admin.Controllers
 {
@@ -16,10 +19,15 @@ namespace BlogWebApp.Areas.Admin.Controllers
     public class BlogImagesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _applicationUser;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public BlogImagesController(ApplicationDbContext context)
+        public BlogImagesController(ApplicationDbContext context, IWebHostEnvironment webHostEnvironment, UserManager<ApplicationUser> applicationUser)
         {
             _context = context;
+            _webHostEnvironment = webHostEnvironment;
+            _applicationUser = applicationUser;
+
         }
 
         // GET: Admin/BlogImages
@@ -57,14 +65,14 @@ namespace BlogWebApp.Areas.Admin.Controllers
             BlogImagesVM obj = new()
             {
                 BlogImages = new(),
-                SubCategoryList = _context.BlogImages.Include(b => b.subCategory).Select(i => new SelectListItem
-            {
-                    Text = i.subCategory.ToString(),
-                    Value = i.Id.ToString()
+                SubCategoryList = new SelectList(_context.SubCategory, "Id", "SubCategoryName")
+                //{
+                //        Text = i.subCategory.ToString(),
+                //        Value = i.Id.ToString()
 
-                } )
+                //    } )
 
-            };  
+            };
             return View(obj);
         }
 
@@ -73,17 +81,58 @@ namespace BlogWebApp.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("BlogTitle,ImageUrl,SubCategoryId,Id,CreatedDate,CreatedBy,ModifiedDate,ModifiedBy")] BlogImages blogImages)
+
+        public async Task<IActionResult> Create(BlogImagesVM obj, List<IFormFile>? files)
         {
-            if (ModelState.IsValid)
+            List<BlogImages> objList = new List<BlogImages>();
+
+            obj.SubCategoryList = new SelectList(_context.SubCategory, "Id", "SubCategoryName");
+
+            //if (ModelState.IsValid)
             {
-                _context.Add(blogImages);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                string wwwRootPath = _webHostEnvironment.WebRootPath;
+                if (files != null && files.Count > 0)
+                {
+                    foreach (var file in files)
+                    {
+                        BlogImages objSingle = new BlogImages();
+                        string fileName = Guid.NewGuid().ToString();
+                        var uploads = Path.Combine(wwwRootPath, @"blogImages/images/");
+                        var extension = Path.GetExtension(file.FileName);
+                        using (var fileStream = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+                        {
+                            file.CopyTo(fileStream);
+                        }
+                        obj.BlogImages.ImageUrl = @"\blogImages\images\" + fileName + extension;
+                        obj.BlogImages.CreatedBy = _applicationUser.GetUserId(HttpContext.User);
+                        objSingle.BlogTitle = obj.BlogImages.BlogTitle;
+                        objSingle.ImageUrl = obj.BlogImages.ImageUrl;
+                        objSingle.SubCategoryId = obj.BlogImages.SubCategoryId;
+                        objSingle.CreatedBy = obj.BlogImages.CreatedBy;
+                        objList.Add(objSingle);
+                    }
+
+                    _context.BlogImages.AddRange(objList);
+                    await _context.SaveChangesAsync();
+                    TempData["success"] = "Blog Images uploaded successfully!";
+                    return RedirectToAction("Index");
+                }
             }
-            ViewData["SubCategoryId"] = new SelectList(_context.SubCategory, "Id", "SubCategoryName", blogImages.SubCategoryId);
-            return View(blogImages);
+
+            return View(obj);
         }
+
+        //public async Task<IActionResult> Create([Bind("BlogTitle,ImageUrl,SubCategoryId,Id,CreatedDate,CreatedBy,ModifiedDate,ModifiedBy")] BlogImages blogImages)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _context.Add(blogImages);
+        //        await _context.SaveChangesAsync();
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    ViewData["SubCategoryId"] = new SelectList(_context.SubCategory, "Id", "SubCategoryName", blogImages.SubCategoryId);
+        //    return View(blogImages);
+        //}
 
         // GET: Admin/BlogImages/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -96,11 +145,21 @@ namespace BlogWebApp.Areas.Admin.Controllers
             var blogImages = await _context.BlogImages.FindAsync(id);
             if (blogImages == null)
             {
-                return NotFound();
+                return RedirectToAction("Index");
             }
-            ViewData["SubCategoryId"] = new SelectList(_context.SubCategory, "Id", "SubCategoryName", blogImages.SubCategoryId);
-            return View(blogImages);
-        }
+
+            BlogImagesVM objVM = new()
+            {
+                BlogImages = blogImages,
+                SubCategoryList = new SelectList(_context.SubCategory, "Id", "SubCategoryName")
+            };
+
+            return View(objVM);
+         }
+
+            //ViewData["SubCategoryId"] = new SelectList(_context.SubCategory, "Id", "SubCategoryName", blogImages.SubCategoryId);
+            //return View(blogImages);
+     //}
 
         // POST: Admin/BlogImages/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.

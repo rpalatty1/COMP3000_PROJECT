@@ -1,71 +1,54 @@
-﻿@model IEnumerable<BlogWebApp.Models.BlogImages>
+﻿@model IEnumerable<BlogImages>
 
-@{
-    ViewData["Title"] = "Index";
-}
+<div class="table-wrapper">
+    <div class="table-title">
+        <div class="row">
+            <div class="col-sm-6 py-1">
+                <h6>Blog Image List</h6>
+            </div>
+            <div class="col-sm-6 d-flex- flex-row align-items-center justify-content-end">
+                <a asp-area="Admin" asp-controller="BlogImages" asp-action="Create"
+                    class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"> <i class="bi bi-plus-square"></i>Upload Image(s)</a>            
+             </div>
+        </div>
+    </div>
 
-<h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.BlogTitle)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImageUrl)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.subCategory)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedBy)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ModifiedDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ModifiedBy)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.BlogTitle)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageUrl)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.subCategory.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedBy)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ModifiedDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ModifiedBy)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <div class="accoridon" id="accordionExample">
+        @foreach (var item in Model.Select (s=> s.BlogTitle).Distinct().ToList())
+        {
+            var itemData = Model.Where(s => s.BlogTitle == item).ToList();
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="@itemData[0]".Id>
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapse_@itemData[0].Id" aria-expanded="false" aria-controls="collapse_@itemData[0].Id">
+                    @itemData[0].BlogTitle
+                </button>
+                </h2>
+          
+    <div id="collapse_@itemData[0].Id" class="accordion-collapse collapse" aria-labelledby="@itemData[0].Id" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+            @foreach (var itemData1 in Model.Where(s => s.BlogTitle == item).ToList())
+                    {
+                        <div class="bg-light d-flex justify-content-between">
+                            <div><img src="@itemData1.ImageUrl" style="width:100px; height:100px"></div>
+                            <div>
+                                <div class="m-75 btn-group" role="group">
+                                    <a asp-controller="BlogImages" asp-action="Edit" asp-route-id="@itemData1.Id" class="d-none d-sm-inline-flex btn btn-sm btn-primary shadow-sm">
+                                    <i class="bi bi-pencil-square" data-bs-toggle="tooltip" title="Edit" style="font-size:15px"></i> Edit
+                                    </a>
+                                    <a asp-controller="BlogImages" asp-action="Delete" asp-route-id="@itemData1.Id" class="d-none d-sm-inline-flex btn btn-sm btn-danger shadow-sm">
+                                                    <i class="bi bi-x-square" data-bs-toggle="tooltip" title="Delete" style="font-size:15px"></i> Delete
+                                    </a>
+                              </div>
+                              </div>
+                         </div>
+                    }
+                    </div>
+                  </div>
+                </div>
+            }
+        </div>
+</div>
+
+
