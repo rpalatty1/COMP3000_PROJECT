@@ -1,69 +1,47 @@
-﻿@model BlogWebApp.Models.BlogImages
+﻿@model BlogWebApp.Models.ViewModels.BlogImagesVM
 
-@{
-    ViewData["Title"] = "Edit";
-}
+<div class="page-wrapper">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-sm-6 py-1">
+                <h6>Blog Image </h6>
+            </div>
+        </div>
+    </div>
 
-<h1>Edit</h1>
+    <div class="page-body">
+        <form method="post" enctype="multipart/form-data" class="row g-3 p-3">
+            <input type="hidden" asp-for="BlogImages.Id" />
+            <input type="hidden" asp-for="BlogImages.ImageUrl" />
+            <input type="hidden" asp-for="BlogImages.CreatedBy" />
+            <div class="col-md-6">
+                <label class="form-label" asp-for="BlogImages.SubCategoryId"></label>
+                <select asp-for="BlogImages.SubCategoryId" asp-items="@Model.SubCategoryList" class="form-control">
+                    <option disabled selected>---Select Subcategory---</option>
+                </select>
+                <span asp-validation-for="BlogImages.SubCategoryId" class="text-danger"></span>
+            </div>
 
-<h4>BlogImages</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="BlogTitle" class="control-label"></label>
-                <input asp-for="BlogTitle" class="form-control" />
-                <span asp-validation-for="BlogTitle" class="text-danger"></span>
+            <div class="col-md-6">
+                <label class="form-label" asp-for="BlogImages.BlogTitle"></label>
+                <input asp-for="BlogImages.BlogTitle" class="form-control" />
+                <span asp-validation-for="BlogImages.BlogTitle" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="ImageUrl" class="control-label"></label>
-                @*<input asp-for="ImageUrl" class="form-control" />*@
-                <input type="file" name="files" id="upload" asp-for="ImageUrl" multiple class="form-control" />
-
-                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            <div class="col-md-12">
+                <label class="form-label" asp-for="BlogImages.ImageUrl"></label>
+                <input type="file" name="files" id="upload" multiple class="form-control" />
             </div>
-            <div class="form-group">
-                <label asp-for="SubCategoryId" class="control-label"></label>
-                <select asp-for="SubCategoryId" class="form-control" asp-items="ViewBag.SubCategoryId"></select>
-                <span asp-validation-for="SubCategoryId" class="text-danger"></span>
-            </div>
-            <input type="hidden" asp-for="Id" />
-         @*   <div class="form-group">
-                <label asp-for="CreatedDate" class="control-label"></label>
-                <input asp-for="CreatedDate" class="form-control" />
-                <span asp-validation-for="CreatedDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CreatedBy" class="control-label"></label>
-                <input asp-for="CreatedBy" class="form-control" />
-                <span asp-validation-for="CreatedBy" class="text-danger"></span>
-            </div>*@
-            <div class="form-group">
-                <label asp-for="ModifiedDate" class="control-label"></label>
-                <input asp-for="ModifiedDate" class="form-control" />
-                <span asp-validation-for="ModifiedDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ModifiedBy" class="control-label"></label>
-                <input asp-for="ModifiedBy" class="form-control" />
-                <span asp-validation-for="ModifiedBy" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" /> Submit
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-success"><i class="bi bi-plus-circle"></i>
+                    Save</button>
+                <a asp-area="Admin" asp-controller="BlogImages" asp-action="Index" class="btn btn-warning">
+                    <i class="bi bi-arrow-left-square"></i> Back to List
+                </a>
             </div>
         </form>
+
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">
-        <i class="bi bi-arrow-left-square"></i>
-        Back to List
-    </a>
-</div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+

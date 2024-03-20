@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace BlogWebApp.Models.ViewModels
 {
+    [Keyless]
     public class BlogImagesVM
     {
         public BlogImages BlogImages { get; set; }

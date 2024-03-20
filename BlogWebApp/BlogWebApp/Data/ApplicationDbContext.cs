@@ -1,6 +1,7 @@
 ﻿using BlogWebApp.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using BlogWebApp.Models.ViewModels;
 
 namespace BlogWebApp.Data
 {
@@ -28,8 +29,7 @@ namespace BlogWebApp.Data
             public DbSet<Category> Category { get; set; }
             public DbSet<SubCategory> SubCategory { get; set; }
             public DbSet<BlogImages> BlogImages { get; set; }
-            public DbSet<Blog> Blogs { get; set; }
-            public DbSet<BlogPost> BlogPost { get; set; }
+            public DbSet<Blog> Blog { get; set; }
 
 
     }

@@ -166,36 +166,92 @@ namespace BlogWebApp.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("BlogTitle,ImageUrl,SubCategoryId,Id,CreatedDate,CreatedBy,ModifiedDate,ModifiedBy")] BlogImages blogImages)
+
+        public async Task<IActionResult> Edit(BlogImagesVM obj, List<IFormFile>? files)
         {
-            if (id != blogImages.Id)
+            List<BlogImages> objList = new List<BlogImages>();
+
+            obj.SubCategoryList = new SelectList(_context.SubCategory, "Id", "SubCategoryName");
+
+            //if (ModelState.IsValid)
             {
-                return NotFound();
+                string wwwRootPath = _webHostEnvironment.WebRootPath;
+                if (files != null && files.Count > 0)
+                {
+                    foreach (var file in files)
+                    {
+                        BlogImages objSingle = new BlogImages();
+                        string fileName = Guid.NewGuid().ToString();
+                        var uploads = Path.Combine(wwwRootPath, @"blogImages/images/");
+                        var extension = Path.GetExtension(file.FileName);
+
+                        if (obj.BlogImages.ImageUrl !=null)
+                        {
+                            var oldImagePath = Path.Combine(wwwRootPath, obj.BlogImages.ImageUrl.TrimStart('\\'));
+                            if(System.IO.File.Exists(oldImagePath))
+                            {
+                                System.IO.File.Delete(oldImagePath);
+                            }
+
+                        }
+
+                        using (var fileStream = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+                        {
+                            file.CopyTo(fileStream);
+                        }
+
+                        
+                        obj.BlogImages.ImageUrl = @"\blogImages\images\" + fileName + extension;
+                        obj.BlogImages.ModifiedBy = _applicationUser.GetUserId(HttpContext.User);
+                        obj.BlogImages.ModifiedDate = DateTime.Now;
+
+                        //objSingle.BlogTitle = obj.BlogImages.BlogTitle;
+                        //objSingle.ImageUrl = obj.BlogImages.ImageUrl;
+                        //objSingle.SubCategoryId = obj.BlogImages.SubCategoryId;
+                        //objSingle.CreatedBy = obj.BlogImages.CreatedBy;
+                        //objList.Add(objSingle);
+                    }
+
+                    _context.BlogImages.Update(obj.BlogImages);
+                    _context.SaveChanges();
+                    //await _context.SaveChangesAsync();
+                    TempData["success"] = "Blog Images updated successfully!";
+                    return RedirectToAction("Index");
+                }
             }
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(blogImages);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!BlogImagesExists(blogImages.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["SubCategoryId"] = new SelectList(_context.SubCategory, "Id", "SubCategoryName", blogImages.SubCategoryId);
-            return View(blogImages);
+            return View(obj);
         }
+        //public async Task<IActionResult> Edit(int id, [Bind("BlogTitle,ImageUrl,SubCategoryId,Id,CreatedDate,CreatedBy,ModifiedDate,ModifiedBy")] BlogImages blogImages)
+        //{
+        //    if (id != blogImages.Id)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    if (ModelState.IsValid)
+        //    {
+        //        try
+        //        {
+        //            _context.Update(blogImages);
+        //            await _context.SaveChangesAsync();
+        //        }
+        //        catch (DbUpdateConcurrencyException)
+        //        {
+        //            if (!BlogImagesExists(blogImages.Id))
+        //            {
+        //                return NotFound();
+        //            }
+        //            else
+        //            {
+        //                throw;
+        //            }
+        //        }
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    ViewData["SubCategoryId"] = new SelectList(_context.SubCategory, "Id", "SubCategoryName", blogImages.SubCategoryId);
+        //    return View(blogImages);
+        //}
 
         // GET: Admin/BlogImages/Delete/5
         public async Task<IActionResult> Delete(int? id)
