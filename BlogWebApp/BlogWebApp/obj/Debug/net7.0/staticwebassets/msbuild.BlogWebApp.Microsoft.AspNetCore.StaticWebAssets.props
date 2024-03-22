@@ -80,12 +80,12 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\blogImages\images\a1cb1619-11ce-4058-9a19-822bb130a4f9.jpg))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\blogImages\images\a829e4f5-434e-448b-ad59-c09e61475c3d.jpg))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\blogImages\images\eada249f-338d-4ec6-8f5c-13b7e80a17c1.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>BlogWebApp</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/BlogWebApp</BasePath>
-      <RelativePath>blogImages/images/a829e4f5-434e-448b-ad59-c09e61475c3d.jpg</RelativePath>
+      <RelativePath>blogImages/images/eada249f-338d-4ec6-8f5c-13b7e80a17c1.jpg</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -94,7 +94,7 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\blogImages\images\a829e4f5-434e-448b-ad59-c09e61475c3d.jpg))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\blogImages\images\eada249f-338d-4ec6-8f5c-13b7e80a17c1.jpg))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\BlogWebApp.bundle.scp.css))">
       <SourceType>Package</SourceType>

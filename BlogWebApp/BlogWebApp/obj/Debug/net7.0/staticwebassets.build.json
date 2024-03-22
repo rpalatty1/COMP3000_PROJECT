@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "9XOq0Yn6ANMTAuO0SDZsayGqzTEaOMELBuy+TUmJH58=",
+  "Hash": "9PoP6To8IYPhkPUj0idKtlfyIkqn8zBS0pxIjjxTZaY=",
   "Source": "BlogWebApp",
   "BasePath": "_content/BlogWebApp",
   "Mode": "Default",
@@ -1156,12 +1156,12 @@
       "OriginalItemSpec": "wwwroot\\blogImages\\images\\a1cb1619-11ce-4058-9a19-822bb130a4f9.jpg"
     },
     {
-      "Identity": "C:\\Users\\ronia\\source\\repos\\COMP3000_PROJECT_rpalatty1\\BlogWebApp\\BlogWebApp\\wwwroot\\blogImages\\images\\a829e4f5-434e-448b-ad59-c09e61475c3d.jpg",
+      "Identity": "C:\\Users\\ronia\\source\\repos\\COMP3000_PROJECT_rpalatty1\\BlogWebApp\\BlogWebApp\\wwwroot\\blogImages\\images\\eada249f-338d-4ec6-8f5c-13b7e80a17c1.jpg",
       "SourceId": "BlogWebApp",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\ronia\\source\\repos\\COMP3000_PROJECT_rpalatty1\\BlogWebApp\\BlogWebApp\\wwwroot\\",
       "BasePath": "_content/BlogWebApp",
-      "RelativePath": "blogImages/images/a829e4f5-434e-448b-ad59-c09e61475c3d.jpg",
+      "RelativePath": "blogImages/images/eada249f-338d-4ec6-8f5c-13b7e80a17c1.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1170,7 +1170,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\blogImages\\images\\a829e4f5-434e-448b-ad59-c09e61475c3d.jpg"
+      "OriginalItemSpec": "wwwroot\\blogImages\\images\\eada249f-338d-4ec6-8f5c-13b7e80a17c1.jpg"
     },
     {
       "Identity": "C:\\Users\\ronia\\source\\repos\\COMP3000_PROJECT_rpalatty1\\BlogWebApp\\BlogWebApp\\wwwroot\\css\\site.css",
