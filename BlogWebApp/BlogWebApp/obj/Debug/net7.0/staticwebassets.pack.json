@@ -29,6 +29,34 @@
       "PackagePath": "staticwebassets\\blogImages\\images\\eada249f-338d-4ec6-8f5c-13b7e80a17c1.jpg"
     },
     {
+      "Id": "C:\\Users\\ronia\\source\\repos\\COMP3000_PROJECT_rpalatty1\\BlogWebApp\\BlogWebApp\\wwwroot\\blogImages\\titleImages\\1ce8777a-d067-4787-8d67-0403be61cd4a.jpg",
+      "PackagePath": "staticwebassets\\blogImages\\titleImages\\1ce8777a-d067-4787-8d67-0403be61cd4a.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ronia\\source\\repos\\COMP3000_PROJECT_rpalatty1\\BlogWebApp\\BlogWebApp\\wwwroot\\blogImages\\titleImages\\3f132dc9-c95a-48ed-b54c-e7e37ae4c060.jpg",
+      "PackagePath": "staticwebassets\\blogImages\\titleImages\\3f132dc9-c95a-48ed-b54c-e7e37ae4c060.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ronia\\source\\repos\\COMP3000_PROJECT_rpalatty1\\BlogWebApp\\BlogWebApp\\wwwroot\\blogImages\\titleImages\\518a812c-6192-46b1-bc66-d8770e977a34",
+      "PackagePath": "staticwebassets\\blogImages\\titleImages"
+    },
+    {
+      "Id": "C:\\Users\\ronia\\source\\repos\\COMP3000_PROJECT_rpalatty1\\BlogWebApp\\BlogWebApp\\wwwroot\\blogImages\\titleImages\\8b182f79-0ddf-409a-8f73-e830d351c0c4.jpg",
+      "PackagePath": "staticwebassets\\blogImages\\titleImages\\8b182f79-0ddf-409a-8f73-e830d351c0c4.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ronia\\source\\repos\\COMP3000_PROJECT_rpalatty1\\BlogWebApp\\BlogWebApp\\wwwroot\\blogImages\\titleImages\\abe588e5-6d00-4cb5-83c9-e21a0ec87c32.jpg",
+      "PackagePath": "staticwebassets\\blogImages\\titleImages\\abe588e5-6d00-4cb5-83c9-e21a0ec87c32.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ronia\\source\\repos\\COMP3000_PROJECT_rpalatty1\\BlogWebApp\\BlogWebApp\\wwwroot\\blogImages\\titleImages\\d5cbf2ea-1851-4051-bc6b-438a898b2840.jpg",
+      "PackagePath": "staticwebassets\\blogImages\\titleImages\\d5cbf2ea-1851-4051-bc6b-438a898b2840.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ronia\\source\\repos\\COMP3000_PROJECT_rpalatty1\\BlogWebApp\\BlogWebApp\\wwwroot\\blogImages\\titleImages\\f62e03cd-96d6-4fd1-890a-28def2f306bd.jpg",
+      "PackagePath": "staticwebassets\\blogImages\\titleImages\\f62e03cd-96d6-4fd1-890a-28def2f306bd.jpg"
+    },
+    {
       "Id": "C:\\Users\\ronia\\source\\repos\\COMP3000_PROJECT_rpalatty1\\BlogWebApp\\BlogWebApp\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

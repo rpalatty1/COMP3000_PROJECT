@@ -1,4 +1,4 @@
-﻿@model BlogWebApp.Models.Blog
+﻿@model BlogWebApp.Models.ViewModels.BlogVM
 
 @{
     ViewData["Title"] = "Edit";
@@ -10,90 +10,152 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form method="post" enctype="multipart/form-data" class="row g-3 p-3" asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
+            <input type="hidden" asp-for="blog.Id" />
+            <input type="hidden" asp-for="blog.TitleImageUrl" />
+            <input type="hidden" asp-for="blog.CreatedBy" />
+            <input type="hidden" asp-for="blog.ApplicationUserId" />
+            <input type="hidden" asp-for="blog.ModifiedBy" />
+            <input type="hidden" asp-for="blog.Slug" />
+            @*<div class="form-group">
+                <label asp-for="blog.CategoryId" class="control-label"></label>
+                <select asp-for="blog.CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+                <span asp-validation-for="blog.CategoryId" class="text-danger"></span>
+            </div>*@
+            <div class="col-md-6">
+                <label class="form-label" asp-for="blog.CategoryId"></label>
+                <select asp-for="blog.CategoryId" asp-items="@Model.CategoryList" class="form-control">
+                    <option disabled selected>---Select Category---</option>
+                </select>
+                <span asp-validation-for="blog.CategoryId" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="blog.SubCategoryId" class="control-label"></label>
+                <select asp-for="blog.SubCategoryId" class="form-control" asp-items="ViewBag.SubCategoryId"></select>
+                <span asp-validation-for="blog.SubCategoryId" class="text-danger"></span>
+            </div>*@
+            <div class="col-md-6">
+                <label class="form-label" asp-for="blog.SubCategoryId"></label>
+                <select asp-for="blog.SubCategoryId" asp-items="@Model.SubCategoryList" class="form-control">
+                    <option disabled selected>---Select Subcategory---</option>
+                </select>
+                <span asp-validation-for="blog.CategoryId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Slug" class="control-label"></label>
-                <input asp-for="Slug" class="form-control" />
-                <span asp-validation-for="Slug" class="text-danger"></span>
+                <label asp-for="blog.Title" class="control-label"></label>
+                <input asp-for="blog.Title" class="form-control" />
+                <span asp-validation-for="blog.Title" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="blog.Slug" class="control-label"></label>
+                <input asp-for="blog.Slug" class="form-control" />
+                <span asp-validation-for="blog.Slug" class="text-danger"></span> 
+            </div>*@
+            <div class="form-group">
+                <label asp-for="blog.Tags" class="control-label"></label>
+                <input asp-for="blog.Tags" class="form-control" />
+                <span asp-validation-for="blog.Tags" class="text-danger"></span> 
             </div>
             <div class="form-group">
-                <label asp-for="Tags" class="control-label"></label>
-                <input asp-for="Tags" class="form-control" />
-                <span asp-validation-for="Tags" class="text-danger"></span>
+                <label asp-for="blog.Description" class="control-label"></label>
+                <input asp-for="blog.Description" class="form-control" />
+                <span asp-validation-for="blog.Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
+                <label asp-for="blog.Content" class="control-label"></label>
+                <textarea id="summernote" asp-for="blog.Content"></textarea>
+                <span asp-validation-for="blog.Content" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Content" class="control-label"></label>
-                <input asp-for="Content" class="form-control" />
-                <span asp-validation-for="Content" class="text-danger"></span>
+                <label asp-for="blog.TitleImageUrl" class="control-label"></label>
+                <input type="file" name="file" id="upload" asp-for="blog.TitleImageUrl" class="form-control" />
+                <span asp-validation-for="blog.TitleImageUrl" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="TitleImageUrl" class="control-label"></label>
-                <input asp-for="TitleImageUrl" class="form-control" />
-                <span asp-validation-for="TitleImageUrl" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ApplicationUserId" class="control-label"></label>
-                <select asp-for="ApplicationUserId" class="form-control" asp-items="ViewBag.ApplicationUserId"></select>
-                <span asp-validation-for="ApplicationUserId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CategoryId" class="control-label"></label>
-                <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
-                <span asp-validation-for="CategoryId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SubCategoryId" class="control-label"></label>
-                <select asp-for="SubCategoryId" class="form-control" asp-items="ViewBag.SubCategoryId"></select>
-                <span asp-validation-for="SubCategoryId" class="text-danger"></span>
-            </div>
+            
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+                    <input class="form-check-input" asp-for="blog.IsActive" /> @Html.DisplayNameFor(model => model.blog.IsActive)
                 </label>
             </div>
-            <input type="hidden" asp-for="Id" />
+            @*<input type="hidden" asp-for="blog.Id" />
             <div class="form-group">
-                <label asp-for="CreatedDate" class="control-label"></label>
-                <input asp-for="CreatedDate" class="form-control" />
-                <span asp-validation-for="CreatedDate" class="text-danger"></span>
+                <label asp-for="blog.ApplicationUserId" class="control-label"></label>
+                <select asp-for="blog.ApplicationUserId" class="form-control" asp-items="ViewBag.ApplicationUserId"></select>
+                <span asp-validation-for="blog.ApplicationUserId" class="text-danger"></span>
+                <input type="hidden" asp-for="blog.Id" />
             </div>
             <div class="form-group">
-                <label asp-for="CreatedBy" class="control-label"></label>
-                <input asp-for="CreatedBy" class="form-control" />
-                <span asp-validation-for="CreatedBy" class="text-danger"></span>
+                <label asp-for="blog.CreatedDate" class="control-label"></label>
+                <input asp-for="blog.CreatedDate" class="form-control" />
+                <span asp-validation-for="blog.CreatedDate" class="text-danger"></span>
+                <input type="hidden" asp-for="blog.Id" />
             </div>
             <div class="form-group">
-                <label asp-for="ModifiedDate" class="control-label"></label>
-                <input asp-for="ModifiedDate" class="form-control" />
-                <span asp-validation-for="ModifiedDate" class="text-danger"></span>
+                <label asp-for="blog.CreatedBy" class="control-label"></label>
+                <input asp-for="blog.CreatedBy" class="form-control" />
+                <span asp-validation-for="blog.CreatedBy" class="text-danger"></span>
+                <input type="hidden" asp-for="blog.Id" />
             </div>
             <div class="form-group">
-                <label asp-for="ModifiedBy" class="control-label"></label>
-                <input asp-for="ModifiedBy" class="form-control" />
-                <span asp-validation-for="ModifiedBy" class="text-danger"></span>
+                <label asp-for="blog.ModifiedDate" class="control-label"></label>
+                <input asp-for="blog.ModifiedDate" class="form-control" />
+                <span asp-validation-for="blog.ModifiedDate" class="text-danger"></span>
+                <input type="hidden" asp-for="blog.Id" />
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <label asp-for="blog.ModifiedBy" class="control-label"></label>
+                <input asp-for="blog.ModifiedBy" class="form-control" />
+                <span asp-validation-for="blog.ModifiedBy" class="text-danger"></span>
+                <input type="hidden" asp-for="blog.Id" />
+            </div>*@
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-success">
+                    <i class="bi bi-plus-circle"></i>
+                    Save
+                </button>
+                <a asp-area="Admin" asp-controller="Blog" asp-action="Index" class="btn btn-warning">
+                    <i class="bi bi-arrow-left-square"></i> Back to List
+                </a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
+@*<div>
     <a asp-action="Index">Back to List</a>
-</div>
+</div>*@
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#summernote').summernote({
+                placeholder: 'Content',
+                tabsize: 2,
+                height: 200
+            });
+        });
+    </script>
+
+    <script>
+        function ValidateInput() {
+            if (document.getElementById('upload').value == '') {
+                Sval.fire({
+                    icon: "error",
+                    title: "oops...",
+                    text: "Image filed is required!",
+                    footer: "<a href=Please upload image?</a>"
+                });
+                return false;
+            }
+            return true;
+        }
+    </script>
+
+
+
 }
