@@ -23,5 +23,7 @@ namespace BlogWebApp.Models
         [Required]
         public bool IsActive { get; set; }
 
+        public ICollection<SubCategory> SubCategories { get; set; }
+
     }
 }
