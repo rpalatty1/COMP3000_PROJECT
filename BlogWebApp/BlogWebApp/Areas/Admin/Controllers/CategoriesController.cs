@@ -66,7 +66,7 @@ namespace BlogWebApp.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CategoryName,CategorySlug,DefaultImageUrl,Description,IsActive,Id,CreatedDate,CreatedBy,ModifiedDate,ModifiedBy")] Category category, IFormFile? file)
         {
-            if (ModelState.IsValid)
+            //if (ModelState.IsValid)
             {
                 string wwwRootPath = _iWebHostEnvironment.WebRootPath;
                 if(file != null)
@@ -118,7 +118,7 @@ namespace BlogWebApp.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            //if (ModelState.IsValid)
             {
                 try
                 {
