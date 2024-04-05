@@ -6,9 +6,15 @@
 
 <h1>Index</h1>
 
-<p>
+@*<p>
     <a asp-action="Create">Create New</a>
-</p>
+</p>*@
+<div class="col-sm-6 d-flex-column flex-grow-0 align-items-center justify-content-end">
+    <a asp-area="Admin" asp-controller="SubCategories" asp-action="Create"
+       class="d-none d-sm-inline btn btm-sm btn-success shadow-sm">
+        <i class="bi bi-plus-square" data-bs-toggle="tooltip" title="Add" style="font-size:15px"> Add New Category</i>
+    </a>
+</div>
 <table class="table">
     <thead>
         <tr>
@@ -18,18 +24,18 @@
             <th>
                 @Html.DisplayNameFor(model => model.Category)
             </th>
-            <th>
+           @* <th>
                 @Html.DisplayNameFor(model => model.CreatedDate)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CreatedBy)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.ModifiedDate)
             </th>
-            <th>
+          @*  <th>
                 @Html.DisplayNameFor(model => model.ModifiedBy)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.IsActive)
             </th>
@@ -45,25 +51,36 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Category.CategoryName)
             </td>
-            <td>
+           @* <td>
                 @Html.DisplayFor(modelItem => item.CreatedDate)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CreatedBy)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.ModifiedDate)
             </td>
-            <td>
+           @* <td>
                 @Html.DisplayFor(modelItem => item.ModifiedBy)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.IsActive)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <div class="w-75 btn-group" role="group">
+
+                        <a asp-area="Admin" asp-controller="SubCategories" asp-action="Edit" asp-route-id="@item.Id"
+                           class="d-none d-sm-inline-flex btn btn-sm btn-primary shadow-sm">
+                            <i class="bi bi-pencil-square" data-bs-toggle="tooltip" title="Edit" style="font-size:15px"> Edit</i>
+                        </a>
+                        <a asp-area="Admin" asp-controller="SubCategories" asp-action="Delete" asp-route-id="@item.Id"
+                           class="d-none d-sm-inline-flex btn btn-sm btn-danger shadow-sm">
+                            <i class="bi bi-x-square" data-bs-toggle="tooltip" title="Delete" style="font-size:15px"> Delete</i>
+                        </a>
+                    </div>
+            @*    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
             </td>
         </tr>
 }

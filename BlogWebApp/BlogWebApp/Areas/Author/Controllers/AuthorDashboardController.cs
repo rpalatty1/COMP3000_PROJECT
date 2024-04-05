@@ -2,6 +2,7 @@
 
 namespace BlogWebApp.Areas.Author.Controllers
 {
+    [Area("Author")]
     public class AuthorDashboardController : Controller
     {
         public IActionResult Index()

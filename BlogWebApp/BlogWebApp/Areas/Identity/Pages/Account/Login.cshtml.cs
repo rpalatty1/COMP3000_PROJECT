@@ -125,7 +125,7 @@ namespace BlogWebApp.Areas.Identity.Pages.Account
                     if (roles.IndexOf("Admin") != -1)
                         returnUrl = "/Admin/AdminDashboard";
                     else if (roles.IndexOf("Author") != -1)
-                        returnUrl = "/Author/AuhtorDashboard";
+                        returnUrl = "/Author/AuthorDashboard";
                     else if (roles.IndexOf("Subscriber") != -1)
                         returnUrl = "/Subscriber/SubscriberDashboard";
 

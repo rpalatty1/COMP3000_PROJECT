@@ -57,7 +57,13 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+    @*    <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>*@
+        <div class="col-md-12">
+            <input type="submit" value="Delete" class="btn btn-danger" />
+            <a asp-area="Admin" asp-controller="SubCategories" asp-action="Index" class="btn btn-warning">
+                <i class="bi bi-arrow-left-square"></i>Back to List
+            </a>
+        </div>
     </form>
 </div>

@@ -23,6 +23,20 @@ namespace BlogWebApp.Controllers
             return View(objBlogList);
         }
 
+        public IActionResult CategoryWiseBlog(string? categoryName)
+        {
+            IEnumerable<Blog> objBlogList = _context.Blog.Include(b => b.ApplicationUser).Include(b => b.Category).Where(b => b.Category.CategoryName == categoryName).Include(b => b.SubCategory);
+            return View(objBlogList);
+        }
+
+        public IActionResult TitleWiseBlog(string? categoryName, string? title)
+        {
+            IEnumerable<Blog> objBlogList = _context.Blog.Include(b => b.ApplicationUser).Include(b => b.Category).Include(b => b.SubCategory);
+            Blog blog = objBlogList.FirstOrDefault(b => b.Slug == title);
+            return View(blog);
+
+        }
+
         public IActionResult Privacy()
         {
             return View();
@@ -33,5 +47,7 @@ namespace BlogWebApp.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
     }
 }

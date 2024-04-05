@@ -31,7 +31,7 @@
                 <input asp-for="CreatedBy" class="form-control" />
                 <span asp-validation-for="CreatedBy" class="text-danger"></span>
             </div>
-            <div class="form-group">
+          @*  <div class="form-group">
                 <label asp-for="ModifiedDate" class="control-label"></label>
                 <input asp-for="ModifiedDate" class="form-control" />
                 <span asp-validation-for="ModifiedDate" class="text-danger"></span>
@@ -40,22 +40,28 @@
                 <label asp-for="ModifiedBy" class="control-label"></label>
                 <input asp-for="ModifiedBy" class="form-control" />
                 <span asp-validation-for="ModifiedBy" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
                 </label>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
+            </div>*@
+            <div class="col-md-12">
+                <button type="submit" @*class=" btn btn-success"*@ class="btn btn-primary" onclick="return ValidationInput()">Submit</button>
+                <a asp-area="Admin" asp-controller="SubCategories" asp-action="Index" class="btn btn-warning">
+                    <i class="bi bi-arrow-left-square"></i>Back to List
+                </a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
+@*<div>
     <a asp-action="Index">Back to List</a>
-</div>
+</div>*@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

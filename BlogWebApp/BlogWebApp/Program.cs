@@ -52,6 +52,26 @@ app.MapAreaControllerRoute(
     areaName: "Admin",
     pattern: "Admin/{controller=AdminDashboard}/{action=Index}/{id?}");
 
+app.MapAreaControllerRoute(
+    name: "AuthorArea",
+    areaName: "Author",
+    pattern: "Author/{controller=AuthorDashboard}/{action=Index}/{id?}");
+
+app.MapAreaControllerRoute(
+    name: "SubscriberArea",
+    areaName: "Subscriber",
+    pattern: "Subscriber/{controller=SubscriberDashboard}/{action=Index}/{id?}");
+
+app.MapControllerRoute(
+    name: "blog",
+    pattern: "blog/{categoryName}",
+    defaults: new { controller = "Home", action = "CategoryWiseBlog" });
+
+app.MapControllerRoute(
+    name: "blog",
+    pattern: "blog/{categoryName}/{title}",
+    defaults: new { controller = "Home", action = "TitleWiseBlog" });
+
 app.MapControllerRoute(
 name: "default",
 pattern: "{controller=Home}/{action=Index}/{id?}");

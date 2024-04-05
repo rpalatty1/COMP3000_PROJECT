@@ -96,14 +96,14 @@
                 <input asp-for="blog.CreatedBy" class="form-control" />
                 <span asp-validation-for="blog.CreatedBy" class="text-danger"></span>
                 <input type="hidden" asp-for="blog.Id" />
-            </div>
+            </div>*@
             <div class="form-group">
                 <label asp-for="blog.ModifiedDate" class="control-label"></label>
                 <input asp-for="blog.ModifiedDate" class="form-control" />
                 <span asp-validation-for="blog.ModifiedDate" class="text-danger"></span>
                 <input type="hidden" asp-for="blog.Id" />
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="blog.ModifiedBy" class="control-label"></label>
                 <input asp-for="blog.ModifiedBy" class="form-control" />
                 <span asp-validation-for="blog.ModifiedBy" class="text-danger"></span>

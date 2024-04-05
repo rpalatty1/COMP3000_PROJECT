@@ -111,7 +111,7 @@ namespace BlogWebApp.Areas.Admin.Controllers
                 {
                     string fileName = Guid.NewGuid().ToString();
                     var uploads = Path.Combine(wwwRootPath, @"blogImages/titleImages/");
-                    var extension = Path.GetExtension(file.Name);
+                    var extension = Path.GetExtension(file.FileName);
                     using (var fileStreams = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
                     {
                         file.CopyTo(fileStreams);

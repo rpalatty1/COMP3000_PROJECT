@@ -12,10 +12,10 @@
                     <h3 class="mb-0">@item.Title</h3>
                     <div class="mb-1 text-muted">@item.CreatedDate</div>
                     <p class="card-text mb-auto">@item.Description</p>
-                    <a href="#" class="stretched-link">Continue reading</a>
+                    <a href="/blog/@item.Category.CategorySlug/@item.Slug" title="@item.Title" class="stretched-link">Continue reading</a>
                 </div>
                 <div class="col-auto d-none d-lg-block">
-                    <img class="img-fluid" src="@item.TitleImageUrl" style="width:100%,height:100%">
+                    <img class="img-fluid" src="@item.TitleImageUrl" style="width:200px;height:200px">
                 </div>
             </div>
         </div>
