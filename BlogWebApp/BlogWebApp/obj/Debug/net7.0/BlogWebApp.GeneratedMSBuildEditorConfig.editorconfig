@@ -120,6 +120,18 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQXV0aG9yXFZpZXdzXEJsb2dcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/ronia/source/repos/COMP3000_PROJECT_rpalatty1/BlogWebApp/BlogWebApp/Areas/Author/Views/Blog/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQXV0aG9yXFZpZXdzXEJsb2dcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ronia/source/repos/COMP3000_PROJECT_rpalatty1/BlogWebApp/BlogWebApp/Areas/Author/Views/Blog/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQXV0aG9yXFZpZXdzXEJsb2dcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ronia/source/repos/COMP3000_PROJECT_rpalatty1/BlogWebApp/BlogWebApp/Areas/Author/Views/Blog/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQXV0aG9yXFZpZXdzXEJsb2dcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/ronia/source/repos/COMP3000_PROJECT_rpalatty1/BlogWebApp/BlogWebApp/Areas/Author/Views/Blog/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQXV0aG9yXFZpZXdzXEJsb2dcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
