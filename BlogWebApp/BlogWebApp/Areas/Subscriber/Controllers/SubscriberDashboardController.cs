@@ -1,7 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BlogWebApp.Data;
+using BlogWebApp.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 
-namespace BlogWebApp.Areas.Subscriber.Controllers
+namespace BlogWebApp.Controllers
 {
+    [Area("Subscriber")]
     public class SubscriberDashboardController : Controller
     {
         public IActionResult Index()
