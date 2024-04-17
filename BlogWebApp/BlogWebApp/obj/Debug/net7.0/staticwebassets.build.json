@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "MH3jzkumbj/IBrcXV+/kDvTOjoIZstTsawexSbUOTz0=",
+  "Hash": "Cw/qSX8YqoH3C3Ok/phq73sn7sOAAh8KrFv7iB1Pmxo=",
   "Source": "BlogWebApp",
   "BasePath": "_content/BlogWebApp",
   "Mode": "Default",
@@ -1273,6 +1273,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\blogImages\\images\\eada249f-338d-4ec6-8f5c-13b7e80a17c1.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\ronia\\source\\repos\\COMP3000_PROJECT_rpalatty1\\BlogWebApp\\BlogWebApp\\wwwroot\\blogImages\\titleImages\\04905493-e3ff-4701-9e2c-a5706f306053.jfif",
+      "SourceId": "BlogWebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ronia\\source\\repos\\COMP3000_PROJECT_rpalatty1\\BlogWebApp\\BlogWebApp\\wwwroot\\",
+      "BasePath": "_content/BlogWebApp",
+      "RelativePath": "blogImages/titleImages/04905493-e3ff-4701-9e2c-a5706f306053.jfif",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\blogImages\\titleImages\\04905493-e3ff-4701-9e2c-a5706f306053.jfif"
     },
     {
       "Identity": "C:\\Users\\ronia\\source\\repos\\COMP3000_PROJECT_rpalatty1\\BlogWebApp\\BlogWebApp\\wwwroot\\blogImages\\titleImages\\05f74360-4f87-42ad-ab6b-9e28d2a5d03f.jfif",

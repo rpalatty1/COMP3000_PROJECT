@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using BlogWebApp.Models.ViewModels;
+using BlogWebApp.Models.Comments;
 
 namespace BlogWebApp.Data
 {
@@ -30,6 +31,8 @@ namespace BlogWebApp.Data
             public DbSet<SubCategory> SubCategory { get; set; }
             public DbSet<BlogImages> BlogImages { get; set; }
             public DbSet<Blog> Blog { get; set; }
+            public DbSet<MainComment> MainComment { get; set; }
+            public DbSet<SubComment> SubComment { get; set; }
 
 
     }

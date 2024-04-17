@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.ComponentModel;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.Build.Framework;
-
+using BlogWebApp.Models.Comments;
 
 namespace BlogWebApp.Models
 {
@@ -49,6 +49,7 @@ namespace BlogWebApp.Models
         [Required]
         public bool IsActive { get; set; }
 
+        public List<MainComment> MainComments { get; set; }
 
     }
 }

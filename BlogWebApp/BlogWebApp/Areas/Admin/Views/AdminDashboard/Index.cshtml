@@ -1,4 +1,5 @@
-﻿@*
+﻿@model IEnumerable<BlogWebApp.Models.Blog>
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
@@ -14,7 +15,7 @@
     <div class="row my-4">
         <div class="col-12 col-md-6 col-lg-3 mb-4 m-lg-0">
             <div class="card">
-                <h5 class="card-header">Total Author</h5>
+                <h5 class="card-header">Total Authors</h5>
                 <div class="card-body">
                     <h5 class="card-title"></h5>
                 </div>
@@ -50,13 +51,13 @@
                     <thead>
                         <tr>
                             <th>
-                                Title
+                                @Html.DisplayNameFor(model => model.Title)
                             </th>
                             <th>
-                                Created Date
+                                @Html.DisplayNameFor(model => model.CreatedDate)
                             </th>
                             <th>
-                                Author
+                                @Html.DisplayNameFor(model => model.CreatedBy)
                             </th>
                             <th>
                                 Views
@@ -64,20 +65,22 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach (var item in Model) {
                         <tr>
                             <td>
-                                Cooking with me
+                                    @Html.DisplayFor(modelItem => item.Title)
                             </td>
                             <td>
-                                17-Feb-2024
+                                    @Html.DisplayFor(modelItem => item.CreatedDate)
                             </td>
                             <td>
-                                Ronia P
+                                    @Html.DisplayFor(modelItem => item.CreatedBy)
                             </td>
                             <td>
                                 100
                             </td>
                         </tr>
+                        }
                     </tbody>
                 </table>
             </div>

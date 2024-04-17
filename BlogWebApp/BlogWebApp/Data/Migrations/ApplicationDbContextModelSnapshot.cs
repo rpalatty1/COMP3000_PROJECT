@@ -219,6 +219,56 @@ namespace BlogWebApp.Data.Migrations
                     b.ToTable("Category");
                 });
 
+            modelBuilder.Entity("BlogWebApp.Models.Comments.MainComment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("BlogId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BlogId");
+
+                    b.ToTable("MainComment");
+                });
+
+            modelBuilder.Entity("BlogWebApp.Models.Comments.SubComment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("MainCommentId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MainCommentId");
+
+                    b.ToTable("SubComment");
+                });
+
             modelBuilder.Entity("BlogWebApp.Models.SubCategory", b =>
                 {
                     b.Property<int>("Id")
@@ -492,13 +542,13 @@ namespace BlogWebApp.Data.Migrations
                     b.HasOne("BlogWebApp.Models.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("BlogWebApp.Models.SubCategory", "SubCategory")
                         .WithMany()
                         .HasForeignKey("SubCategoryId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("ApplicationUser");
@@ -513,10 +563,26 @@ namespace BlogWebApp.Data.Migrations
                     b.HasOne("BlogWebApp.Models.SubCategory", "subCategory")
                         .WithMany()
                         .HasForeignKey("SubCategoryId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("subCategory");
+                });
+
+            modelBuilder.Entity("BlogWebApp.Models.Comments.MainComment", b =>
+                {
+                    b.HasOne("BlogWebApp.Models.Blog", null)
+                        .WithMany("MainComments")
+                        .HasForeignKey("BlogId");
+                });
+
+            modelBuilder.Entity("BlogWebApp.Models.Comments.SubComment", b =>
+                {
+                    b.HasOne("BlogWebApp.Models.Comments.MainComment", null)
+                        .WithMany("SubComments")
+                        .HasForeignKey("MainCommentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("BlogWebApp.Models.SubCategory", b =>
@@ -524,7 +590,7 @@ namespace BlogWebApp.Data.Migrations
                     b.HasOne("BlogWebApp.Models.Category", "Category")
                         .WithMany("SubCategories")
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Category");
@@ -581,9 +647,19 @@ namespace BlogWebApp.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("BlogWebApp.Models.Blog", b =>
+                {
+                    b.Navigation("MainComments");
+                });
+
             modelBuilder.Entity("BlogWebApp.Models.Category", b =>
                 {
                     b.Navigation("SubCategories");
+                });
+
+            modelBuilder.Entity("BlogWebApp.Models.Comments.MainComment", b =>
+                {
+                    b.Navigation("SubComments");
                 });
 #pragma warning restore 612, 618
         }
