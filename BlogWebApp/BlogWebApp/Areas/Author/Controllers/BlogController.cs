@@ -10,6 +10,7 @@ using BlogWebApp.Models;
 using Microsoft.AspNetCore.Identity;
 using BlogWebApp.Models.ViewModels;
 using BlogWebApp.Data.Migrations;
+using System.Security.Claims;
 
 namespace BlogWebApp.Areas.Author.Controllers
 {
@@ -31,7 +32,8 @@ namespace BlogWebApp.Areas.Author.Controllers
         // GET: Author/Blog
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Blog.Include(b => b.ApplicationUser).Include(b => b.Category).Include(b => b.SubCategory);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Get the current user's ID
+            var applicationDbContext = _context.Blog.Include(b => b.ApplicationUser).Include(b => b.Category).Include(b => b.SubCategory).Where(b => b.ApplicationUserId == userId);
             return View(await applicationDbContext.ToListAsync());
         }
 

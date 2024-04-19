@@ -25,7 +25,9 @@
             <div class="card">
                 <h5 class="card-header">Total Blogs</h5>
                 <div class="card-body">
-                    <h5 class="card-title"></h5>
+                    <h5 class="card-title">
+                        <h5>@ViewBag.BlogCount</h5>
+                    </h5>
                 </div>
             </div>
         </div>
@@ -33,7 +35,9 @@
             <div class="card">
                 <h5 class="card-header">Total Category</h5>
                 <div class="card-body">
-                    <h5 class="card-title"></h5>
+                    <h5 class="card-title">
+                        <h4>@ViewBag.CategoryCount</h4>
+                    </h5>
                 </div>
             </div>
         </div>
@@ -74,7 +78,7 @@
                                     @Html.DisplayFor(modelItem => item.CreatedDate)
                             </td>
                             <td>
-                                    @Html.DisplayFor(modelItem => item.CreatedBy)
+                                    @Html.DisplayFor(modelItem => item.ApplicationUser.FirstName)
                             </td>
                             <td>
                                 100

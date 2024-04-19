@@ -120,7 +120,7 @@ namespace BlogWebApp.Areas.Admin.Controllers
                     obj.blog.TitleImageUrl = @"\blogImages\titleImages\" + fileName + extension;
                 }
 
-                obj.blog.CreatedBy = _applicationUser.GetUserId(HttpContext.User);
+                obj.blog.CreatedBy = _applicationUser.GetUserName(HttpContext.User);
                 obj.blog.ApplicationUserId = _applicationUser.GetUserId(HttpContext.User);
                 _context.Blog.Add(obj.blog);
                 _context.SaveChanges();
