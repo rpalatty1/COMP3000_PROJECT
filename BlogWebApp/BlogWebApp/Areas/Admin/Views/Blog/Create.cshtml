@@ -15,8 +15,6 @@
         <form asp-action="Create" enctype="multipart/form-data" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                @* <label select asp-for="blog.CategoryId" class="control-label"></label>
-                <select asp-for="blog.CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>*@
 
                 <label class="form-label" asp-for="blog.CategoryId"></label>
                 <select asp-for="blog.CategoryId" id="ddlCategory" asp-items="@Model.CategoryList" class="form-control">
@@ -25,8 +23,6 @@
                 <span asp-validation-for="blog.CategoryId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                @* <label asp-for="SubCategoryId" class="control-label"></label>
-                <select asp-for="SubCategoryId" class ="form-control" asp-items="ViewBag.SubCategoryId"></select>*@
 
                 <label class="form-label" asp-for="blog.SubCategoryId"></label>
                 <select asp-for="blog.SubCategoryId" id="ddlSubCategory" asp-items="@Model.SubCategoryList" class="form-control">
@@ -49,21 +45,12 @@
                 <input asp-for="blog.Tags" class="form-control" />
                 <span asp-validation-for="blog.Tags" class="text-danger"></span>
             </div>
-            
-            @*<div class="form-group">
-                <label asp-for="TitleImageUrl" class="control-label"></label>
-                <input asp-for="TitleImageUrl" class="form-control" />
-                <span asp-validation-for="TitleImageUrl" class="text-danger"></span>
-            </div>*@
             <div class="col-md-12">
                 <label class="form-label" asp-for="blog.TitleImageUrl"></label>
                 <input type="file" name="file" id="upload" asp-for="blog.TitleImageUrl" class="form-control" />
                 <span asp-validation-for="blog.TitleImageUrl" class="text-danger"></span>
             </div>
-            @*<div class="col-md-12">
-                <label class="form-label" asp-for="blog.TitleImageUrl"></label>
-                <input type="file" name="file" id="upload" class="form-control" />
-            </div>*@
+
             <div class="form-group">
                 <label asp-for="blog.Description" class="control-label"></label>
                 <input asp-for="blog.Description" class="form-control" />
@@ -71,44 +58,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="blog.Content" class="control-label"></label>
-                <textarea id="summernote" asp-for="blog.Content"></textarea> @*class="form-control"*@
+                <textarea id="summernote" asp-for="blog.Content"></textarea> 
                 <span asp-validation-for="blog.Content" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
-                <label asp-for="ApplicationUserId" class="control-label"></label>
-                <select asp-for="ApplicationUserId" class ="form-control" asp-items="ViewBag.ApplicationUserId"></select>
-            </div>*@
-           
-           @* <div class="form-group">
-                <label asp-for="CreatedDate" class="control-label"></label>
-                <input asp-for="CreatedDate" class="form-control" />
-                <span asp-validation-for="CreatedDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CreatedBy" class="control-label"></label>
-                <input asp-for="CreatedBy" class="form-control" />
-                <span asp-validation-for="CreatedBy" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ModifiedDate" class="control-label"></label>
-                <input asp-for="ModifiedDate" class="form-control" />
-                <span asp-validation-for="ModifiedDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ModifiedBy" class="control-label"></label>
-                <input asp-for="ModifiedBy" class="form-control" />
-                <span asp-validation-for="ModifiedBy" class="text-danger"></span>
-            </div>*@
-           @* <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
-                </label>
-            </div>*@
-           @* <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>*@
+            
             <div class="col-md-12">
-                <button type="submit" @*class=" btn btn-success"*@ class="btn btn-primary" onclick="return ValidationInput()">Submit</button>
+                <button type="submit" class="btn btn-primary" onclick="return ValidationInput()">Submit</button>
                 <a asp-area="Admin" asp-controller="Blog" asp-action="Index" class="btn btn-warning">
                     <i class="bi bi-arrow-left-square"></i>Back to List
                 </a>
@@ -117,7 +72,6 @@
     </div>
 </div>
 
-@*<div id="summernote"><p>Hello Summernote</p></div>*@
 
 @section Scripts {
     @{

@@ -76,7 +76,7 @@ namespace BlogWebApp.Areas.Admin.Controllers
                 blog = new(),
                 //Creates a category list containing Category Id and CategoryName.
                 CategoryList = new SelectList(_context.Category, "Id", "CategoryName"),
-                //Creates a sybcategory list containing SubCategory Id and SubCategoryName.
+                //Creates a subcategory list containing SubCategory Id and SubCategoryName.
                 SubCategoryList = new SelectList(_context.SubCategory, "Id", "SubCategoryName")
 
             };
@@ -85,7 +85,7 @@ namespace BlogWebApp.Areas.Admin.Controllers
             return View(obj);
         }
 
-        // POST - action method to publish the written blog.
+        // POST - Action method to publish the written blog.
 
         [HttpPost]
         [ValidateAntiForgeryToken] //To prevent cross-site request forgery attacks.
@@ -255,20 +255,26 @@ namespace BlogWebApp.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            //Checks if Blog Db set is null. If so, returns an error.
             if (_context.Blog == null)
             {
                 return Problem("Entity set 'ApplicationDbContext.Blog'  is null.");
             }
+            //Retrieves selected blog by id from the database.
             var blog = await _context.Blog.FindAsync(id);
+            //Checks if selected blog exists.
             if (blog != null)
             {
+                //Removes blog from the Db context.
                 _context.Blog.Remove(blog);
             }
             
+            //Saves changes to the database and redirects to Index.
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
+        //Helper method to check if blog exists by id and returns true/false.
         private bool BlogExists(int id)
         {
           return (_context.Blog?.Any(e => e.Id == id)).GetValueOrDefault();

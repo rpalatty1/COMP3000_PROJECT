@@ -11,9 +11,7 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create" enctype="multipart/form-data" method="post">
-         @*   <div class="page-body">
-                <form method="post" enctype="multipart/form-data" class="row g-3 p-"></form>
-                    <div class="col-md-12"*@
+
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="CategoryName" class="control-label"></label>
@@ -25,11 +23,7 @@
                 <input asp-for="CategorySlug" class="form-control" />
                 <span asp-validation-for="CategorySlug" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
-                <label asp-for="DefaultImageUrl" class="control-label"></label>
-                <input asp-for="DefaultImageUrl" class="form-control" />
-                <span asp-validation-for="DefaultImageUrl" class="text-danger"></span>
-            </div>*@
+
             <div class="col-md-12">
                 <label class="form-label" asp-for="DefaultImageUrl"></label>
                 <input type="file" name="file" id="upload" asp-for="DefaultImageUrl" class="form-control" />
@@ -50,26 +44,15 @@
                 <input asp-for="CreatedBy" class="form-control" />
                 <span asp-validation-for="CreatedBy" class="text-danger"></span>
             </div>
-           @* <div class="form-group">
-                <label asp-for="ModifiedDate" class="control-label"></label>
-                <input asp-for="ModifiedDate" class="form-control" />
-                <span asp-validation-for="ModifiedDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ModifiedBy" class="control-label"></label>
-                <input asp-for="ModifiedBy" class="form-control" />
-                <span asp-validation-for="ModifiedBy" class="text-danger"></span>
-            </div>*@
+
             <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
                 </label>
             </div>
-           @* <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>*@
+
             <div class="col-md-12">
-                <button type="submit" @*class=" btn btn-success"*@ class="btn btn-primary" onclick="return ValidationInput()">Submit</button>
+                <button type="submit"  class="btn btn-primary" onclick="return ValidationInput()">Submit</button>
                 <a asp-area="Admin" asp-controller="Categories" asp-action="Index" class="btn btn-warning">
                     <i class="bi bi-arrow-left-square"></i>Back to List
                 </a>
@@ -78,9 +61,6 @@
     </div>
 </div>
 
-@*<div>
-    <a asp-action="Index">Back to List</a>
-</div>*@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

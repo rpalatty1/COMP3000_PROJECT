@@ -6,9 +6,7 @@
 
 <h1>Index</h1>
 
-@*<p>
-    <a asp-action="Create">Create New</a>
-</p>*@
+
 <div class="col-sm-6 d-flex-column flex-grow-0 align-items-center justify-content-end">
     <a asp-area="Admin" asp-controller="SubCategories" asp-action="Create"
        class="d-none d-sm-inline btn btm-sm btn-success shadow-sm">
@@ -24,18 +22,11 @@
             <th>
                 @Html.DisplayNameFor(model => model.Category)
             </th>
-           @* <th>
-                @Html.DisplayNameFor(model => model.CreatedDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedBy)
-            </th>*@
+
             <th>
                 @Html.DisplayNameFor(model => model.ModifiedDate)
             </th>
-          @*  <th>
-                @Html.DisplayNameFor(model => model.ModifiedBy)
-            </th>*@
+
             <th>
                 @Html.DisplayNameFor(model => model.IsActive)
             </th>
@@ -51,18 +42,11 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Category.CategoryName)
             </td>
-           @* <td>
-                @Html.DisplayFor(modelItem => item.CreatedDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedBy)
-            </td>*@
+
             <td>
                 @Html.DisplayFor(modelItem => item.ModifiedDate)
             </td>
-           @* <td>
-                @Html.DisplayFor(modelItem => item.ModifiedBy)
-            </td>*@
+
             <td>
                 @Html.DisplayFor(modelItem => item.IsActive)
             </td>
@@ -78,9 +62,7 @@
                             <i class="bi bi-x-square" data-bs-toggle="tooltip" title="Delete" style="font-size:15px"> Delete</i>
                         </a>
                     </div>
-            @*    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
+
             </td>
         </tr>
 }

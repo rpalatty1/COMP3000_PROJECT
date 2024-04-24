@@ -6,11 +6,6 @@
 
 <h1>Blog List</h1>
 
-@*<p>
-    <a asp-action="Create">Create New
-        <i class="bi bi-plus-square" data-bs-toggle="tooltip" title="Add" style="font-size:15px"> Add Blog </i>
-    </a>
-</p>*@
 
 <div class="col-sm-6 d-flex-column flex-grow-0 align-items-center justify-content-end">
     <a asp-area="Admin" asp-controller="Blog" asp-action="Create"
@@ -34,33 +29,22 @@
             <th>
                 @Html.DisplayNameFor(model => model.Description)
             </th>
-           @* <th>
-                @Html.DisplayNameFor(model => model.Content)
-            </th>*@
+
             <th>
                 @Html.DisplayNameFor(model => model.TitleImageUrl)
             </th>
-            @*<th>
-                @Html.DisplayNameFor(model => model.ApplicationUser)
-            </th>*@
+
             <th>
                 @Html.DisplayNameFor(model => model.Category)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.SubCategory)
             </th>
-           @* <th>
-                @Html.DisplayNameFor(model => model.CreatedDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedBy)
-            </th>*@
+
             <th>
                 @Html.DisplayNameFor(model => model.ModifiedDate)
             </th>
-           @* <th>
-                @Html.DisplayNameFor(model => model.ModifiedBy)
-            </th>*@
+
             <th>
                 @Html.DisplayNameFor(model => model.IsActive)
             </th>
@@ -82,41 +66,26 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.Content)
-            </td>*@
+
             <td>
                 @Html.DisplayFor(modelItem => item.TitleImageUrl)
             </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.ApplicationUser.Id)
-            </td>*@
+
             <td>
                 @Html.DisplayFor(modelItem => item.Category.CategoryName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.SubCategory.SubCategoryName)
             </td>
-        @*    <td>
-                @Html.DisplayFor(modelItem => item.CreatedDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedBy)
-            </td>*@
+ 
             <td>
                 @Html.DisplayFor(modelItem => item.ModifiedDate)
             </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.ModifiedBy)
-            </td>*@
+
                 <td>
                     @Html.DisplayFor(modelItem => item.IsActive)
                 </td>
-         @*   <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>*@
+
                 <td>
                     <div class="w-75 btn-group" role="group">
 
