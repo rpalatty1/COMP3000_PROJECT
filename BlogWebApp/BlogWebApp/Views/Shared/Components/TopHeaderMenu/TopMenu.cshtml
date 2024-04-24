@@ -4,36 +4,22 @@
     <li class="nav-item">
         <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
     </li>
-    @foreach (var item in Model)
-    {
-        if (item.SubCategories != null && item.SubCategories.Count > 0)
-        {
-             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    @item.CategoryName
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    @foreach (var sub in item.SubCategories)
-                    {
-                        <li>
-                            <a class="dropdown-item" href="#">
-                                @sub.SubCategoryName
-                            </a>
-                        </li>
-                    }
-                </ul>
-            </li>
 
-        }
-        else
+    <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Categories
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        @foreach (var item in Model)
         {
             <li class="nav-item">
-                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">
-                    @item.CategoryName
-                </a>
-            </li>
-        }
-        
-    }
+                        <a class="nav-link text-dark" href="@Url.Action("CategoryWiseBlog", "Home", new { categoryName = item.CategoryName })">
+                            @item.CategoryName
+                        </a>
+                    </li>
+
+            }
+        </ul>
+    </li>
    
 </ul>

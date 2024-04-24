@@ -18,7 +18,7 @@
         @foreach (var user in Model)
         {
             <tr>
-                <td>@user.UserName</td>
+                <td>@user.FirstName</td>
                 <td>@user.Email</td>
                 <td>
                     <form asp-controller="AdminDashboard" asp-action="DeleteUser" method="post">

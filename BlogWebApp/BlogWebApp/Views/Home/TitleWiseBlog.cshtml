@@ -4,22 +4,6 @@
 }
 
 
-
-@*<div class="row mb-2">
-    <h1>@Model.Title</h1>
-    <div class="col p-4 d-flex flex-column position-static">
-        <h2 class="display-5 link-body-emphasis mb-1">@Model.Title</h2>
-        <strong class="d-inline-block mb-2 text-primary">@Model.Category.CategoryName</strong>
-        <h3 class="mb-0">@Model.Title</h3>
-        <div class="mb-1 text-muted">@Model.CreatedDate</div>
-        <p class="card-text mb-auto">@Model.Description</p>
-        <div class="col-auto d-none d-lg-block">
-            <img class="img-fluid" src="@Model.TitleImageUrl" style="width:500px;height:500px">
-        </div>
-    </div>
-    <div>@Html.Raw(Model.Content)</div>
-    <div class="summernote">@Model.Content</div>*@
-
 <div class="row mb-2">
     <div class="leftcolumn">
     <div class="card">
@@ -36,21 +20,21 @@
     @if (User.Identity.IsAuthenticated)
     {
         <div class="comment-section">
+            <h4>Comments</h4>
             @{
                 await Html.RenderPartialAsync("_MainComment", new CommentVM { PostId = Model.Id, MainCommentId = 0 });
             }
 
             @foreach (var c in Model.MainComments)
             {
-                <p>
+                <br />      
+                <h5>
                     @c.Message --- @c.Created
-                </p>
-                @*style comments*@
-                <div style="margin-left: 20px;">
-                    <h4>Sub Comments</h4>
-                    @{
-                        await Html.RenderPartialAsync("_MainComment", new CommentVM { PostId = Model.Id, MainCommentId = c.Id });
-                    }
+                </h5>
+                <div style="margin-left: 5px;">
+                    <br />
+                    <h6>Reply</h6>
+                    
 
                     @foreach (var sc in c.SubComments)
                     {
@@ -58,14 +42,19 @@
                             @sc.Message --- @sc.Created
                         </p>
                     }
+                    @{
+                        await Html.RenderPartialAsync("_SubComment", new CommentVM { PostId = Model.Id, MainCommentId = c.Id });
+                    }
                 </div>
             }
+            
         </div>
     }
     else
     {
         <div>
-            <a asp-action="Login" asp-controller="Auth">Sign In</a> to comment on this awesome post!
+            <a asp-area="Identity" asp-page="/Account/Login">Sign In</a> to comment on this awesome post!
+        
         </div>
     }
 

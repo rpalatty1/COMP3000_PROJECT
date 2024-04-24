@@ -20,6 +20,7 @@ namespace BlogWebApp.Areas.Admin.Controllers
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly UserManager<ApplicationUser> _applicationUser;
 
+        //Constructor to inject dependencies.
         public BlogController(ApplicationDbContext context, IWebHostEnvironment webHostEnvironment, UserManager<ApplicationUser> applicationUser)
         {
             _context = context;
@@ -28,204 +29,167 @@ namespace BlogWebApp.Areas.Admin.Controllers
 
         }
 
-        // GET: Admin/Blog
+        //Method to retrieve and display the list of blogs.
         public async Task<IActionResult> Index()
         {
+            //Retrieves blogs from the database relating to these entities.
             var applicationDbContext = _context.Blog.Include(b => b.ApplicationUser).Include(b => b.Category).Include(b => b.SubCategory);
+            //Returns a list view of blogs.
             return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: Admin/Blog/Details/5
+        //Action method to retrieve and display details of the selected blog. 
         public async Task<IActionResult> Details(int? id)
         {
+            //Checks if Blog id or DbSet is null.
             if (id == null || _context.Blog == null)
             {
+                //Returns a 404 Not Found error message.
                 return NotFound();
             }
 
+            //Retrieves information of the selected blog, includes these entities.
             var blog = await _context.Blog
                 .Include(b => b.ApplicationUser)
                 .Include(b => b.Category)
                 .Include(b => b.SubCategory)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
+            //Checks if selected blog is null.
             if (blog == null)
             {
+                //Returns a 404 Not Found error message.
                 return NotFound();
             }
 
+            //Passes selected blog's details to 'Details' view.
             return View(blog);
         }
 
-        //GET: Admin/Blog/GetSubCategoryList
-        //public IActionResult GetSubCategoryList(int Id)
-        //{
-        //    var subCategoryList = _context.SubCategory.GetAll().Where(u => u.CategoryId == Id).ToList();
-        //    return Json(SubCategoryList);
-        //}
-
-        // GET: Admin/Blog/Create
+        // GET - action method to create a new blog.
         public IActionResult Create()
         {
+            //Initialises a new instance of BlogVM.
             BlogVM obj = new()
             {
+                //Initialises new blog instance.
                 blog = new(),
+                //Creates a category list containing Category Id and CategoryName.
                 CategoryList = new SelectList(_context.Category, "Id", "CategoryName"),
+                //Creates a sybcategory list containing SubCategory Id and SubCategoryName.
                 SubCategoryList = new SelectList(_context.SubCategory, "Id", "SubCategoryName")
-                //{
-                //        Text = i.subCategory.ToString(),
-                //        Value = i.Id.ToString()
-
-                //    } )
 
             };
-            //obj.blog.ApplicationUserId = _applicationUser
-            //ViewData["ApplicationUserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id");
-            //ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Id");
-            //ViewData["SubCategoryId"] = new SelectList(_context.SubCategory, "Id", "Id");
+
+            //Passes the initialised BlogVM object to the Create view.
             return View(obj);
         }
 
-        // POST: Admin/Blog/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST - action method to publish the written blog.
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken] //To prevent cross-site request forgery attacks.
 
         public IActionResult Create(BlogVM obj, IFormFile? file)
         {
-            //obj.CategoryList = _context.Category.GetAll().Select(i => new SelectListItem
-            //{
-            //    Text = i.CategoryName,
-            //    Value = i.Id.ToString()
-            //});
-            //obj.CategoryList = _context.SubCategory.GetAll(u => u.CategoryId == obj.Blog.CategoryId).Select(i => new SelectListItem
-            //{
-            //    Text = i.CategoryName,
-            //    Value = i.Id.ToString()
-            //});
-
-            //if (ModelState.IsValid)
             {
+                //Retrieves root path of wwwRootPath folder.
                 string wwwRootPath = _webHostEnvironment.WebRootPath;
+                //Checks if file uploaded.
                 if (file != null)
                 {
+                    //Generates unique file name using GUID where file is saved.
                     string fileName = Guid.NewGuid().ToString();
                     var uploads = Path.Combine(wwwRootPath, @"blogImages/titleImages/");
+                    //Gets file extension.
                     var extension = Path.GetExtension(file.FileName);
+                    //Creates file stream and copies file to directory.
                     using (var fileStreams = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
                     {
                         file.CopyTo(fileStreams);
                     }
 
+                    //Sets titleImage URL for post.
                     obj.blog.TitleImageUrl = @"\blogImages\titleImages\" + fileName + extension;
                 }
 
+                //Sets these properties for the blog post.
                 obj.blog.CreatedBy = _applicationUser.GetUserName(HttpContext.User);
                 obj.blog.ApplicationUserId = _applicationUser.GetUserId(HttpContext.User);
+
+                //Adds blog post to Db context and saves changes.
                 _context.Blog.Add(obj.blog);
                 _context.SaveChanges();
 
+                //Success message displayed and redirected to Index.
                 TempData["success"] = "Blog created successfully";
                 return RedirectToAction("Index");
 
             }
+           
             return View(obj);
         }
-        //public async Task<IActionResult> Create([Bind("Title,Slug,Tags,Description,Content,TitleImageUrl,ApplicationUserId,CategoryId,SubCategoryId,IsActive,Id,CreatedDate,CreatedBy,ModifiedDate,ModifiedBy")] Blog blog)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        _context.Add(blog);
-        //        await _context.SaveChangesAsync();
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    ViewData["ApplicationUserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", blog.ApplicationUserId);
-        //    ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Id", blog.CategoryId);
-        //    ViewData["SubCategoryId"] = new SelectList(_context.SubCategory, "Id", "Id", blog.SubCategoryId);
-        //    return View(blog);
-        //}
-
-        // GET: Admin/Blog/Edit/5
-
-        //public IActionResult Edit(int Id)
-        //{
-        //    Blog objBlog = _context.Blog.GetFirstOrDefault(u => u.Id == Id);
-        //    if (objBlog != null)
-        //    {
-        //        BlogVM obj = new();
-        //        //{
-        //        //    blog = objBlog,
-        //        //    CategoryList = _context.Category.GetAll(u => u.Id == objBlog.CategoryId).Select(i => new SelectListItem
-        //        //    {
-        //        //        Text = i.CategoryName,
-        //        //        Value = i.Id.ToString()
-        //        //    }),
-        //        //    SubCategoryList = _context.SubCategory.GetAll(u => u.CategoryId == objBlog.CategoryId).Select(i => new SelectListItem
-        //        //    {
-        //        //        Text = i.CategoryName,
-        //        //        Value = i.Id.ToString()
-        //        //    }),
-        //        //};
-        //        obj.blog.ApplicationUserId = _applicationUser.GetUserId(HttpContext.User);
-        //        return View(obj);
-        //    }
-        //    else
-        //    {
-        //        return RedirectToAction("Index");
-        //    }
-
-        //}
-
+        
+        //GET - Method to Edit a blog.
         public async Task<IActionResult> Edit(int? id)
         {
+            //Checks if Blog id or DbSet is null.
             if (id == null || _context.Blog == null)
             {
+                //Returns 404 Not Found error message.
                 return NotFound();
             }
 
+            //Retrieves blog with specified id from the database.
             var blogObj = await _context.Blog.FindAsync(id);
+            //Checks if retrieved blog is null. If so, redirects to Index.
             if (blogObj == null)
             {
-                //return NotFound();
                 return RedirectToAction("Index");
             }
 
+            //Initialises new instance of BlogVM.
             BlogVM obj = new()
             {
+                //Sets blog with retrieved blog object.
                 blog = blogObj,
+                //For Category and Subcategory lists.
                 CategoryList = new SelectList(_context.Category, "Id", "CategoryName"),
                 SubCategoryList = new SelectList(_context.SubCategory, "Id", "SubCategoryName")
-                //ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Id", b                                                                                                                                                                                                                    log.CategoryId);
-                //ViewData["SubCategoryId"] = new SelectList(_context.SubCategory, "Id", "Id", blogObj.SubCategoryId);
 
             };
 
-            //ViewData["ApplicationUserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", blog.ApplicationUserId);
             return View(obj);
         }
 
-        // POST: Admin/Blog/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST - Method to Edit a blog.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(BlogVM obj, IFormFile? file)
         {
+            //Populates CategoryList and SubCategoryList properties of BlogVM.
             obj.CategoryList = new SelectList(_context.Category, "Id", "CategoryName");
             obj.SubCategoryList = new SelectList(_context.SubCategory, "Id", "SubCategoryName");
 
-            //if (ModelState.IsValid)
             {
+                //Retrieves root path of wwwroot folder.
                 string wwwRootPath = _webHostEnvironment.WebRootPath;
+                //Checks if file uploaded.
                 if (file != null)
                 {
+                    //Initialises new blog object.
                     Blog objBlog = new Blog();
+                    //Generates new unique file name and defines where it will be saved.
                     string fileName = Guid.NewGuid().ToString();
                     var uploads = Path.Combine(wwwRootPath, @"blogImages/titleImages/");
+                    //Gets file extension.
                     var extension = Path.GetExtension(file.FileName);
 
+                    //Checks if blog already has an image.
                     if (obj.blog.TitleImageUrl != null)
                     {
+                        //Constructs old image pathway and deletes it if it exists.
                         var oldImagePath = Path.Combine(wwwRootPath, obj.blog.TitleImageUrl.TrimStart('\\'));
                         if (System.IO.File.Exists(oldImagePath))
                         {
@@ -233,26 +197,24 @@ namespace BlogWebApp.Areas.Admin.Controllers
                         }
 
                     }
+                    //Creates file stream and copies uploaded image to directory.
                     using (var fileStreams = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
                     {
                         file.CopyTo(fileStreams);
                     }
 
+                    //Updates these entities.
                     obj.blog.TitleImageUrl = @"\blogImages\titleImages\" + fileName + extension;
                     obj.blog.ModifiedBy = _applicationUser.GetUserId(HttpContext.User);
                     obj.blog.ModifiedDate = DateTime.Now;
                     obj.blog.ApplicationUserId = _applicationUser.GetUserId(HttpContext.User);
                 }
 
-                //obj.blog.CreatedBy = _applicationUser.GetUserId(HttpContext.User);
-                //obj.blog.ApplicationUserId = _applicationUser.GetUserId(HttpContext.User);
-                //_context.Blog.Update(obj.blog);
-                //_context.SaveChanges();
+                //Updates blog object in Db context and saves changes.
                 _context.Update(obj.blog);
                 await _context.SaveChangesAsync();
-                //_context.Blog.Update(obj.blog);
-                //_context.SaveChanges();
-                //await _context.SaveChangesAsync();
+
+                //Success message displayed and redirection to Index.
                 TempData["success"] = "Blog created successfully";
                 return RedirectToAction("Index");
 
@@ -260,59 +222,35 @@ namespace BlogWebApp.Areas.Admin.Controllers
             return View(obj);
         }
 
-        //    if (id != blog.Id)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-        //            _context.Update(blog);
-        //            await _context.SaveChangesAsync();
-        //        }
-        //        catch (DbUpdateConcurrencyException)
-        //        {
-        //            if (!BlogExists(blog.Id))
-        //            {
-        //                return NotFound();
-        //            }
-        //            else
-        //            {
-        //                throw;
-        //            }
-        //        }
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    ViewData["ApplicationUserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", blog.ApplicationUserId);
-        //    ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Id", blog.CategoryId);
-        //    ViewData["SubCategoryId"] = new SelectList(_context.SubCategory, "Id", "Id", blog.SubCategoryId);
-        //    return View(blog);
-        //}
-
-        // GET: Admin/Blog/Delete/5
+        // GET - Retrieves and displays details of selected blog to delete.
         public async Task<IActionResult> Delete(int? id)
         {
+            //Checks if Blog id or Db set is null.
             if (id == null || _context.Blog == null)
             {
+                //Returns 404 Not Found error message.
                 return NotFound();
             }
 
+            //Retrieves these details of the selected blog.
             var blog = await _context.Blog
                 .Include(b => b.ApplicationUser)
                 .Include(b => b.Category)
                 .Include(b => b.SubCategory)
                 .FirstOrDefaultAsync(m => m.Id == id);
+            //Checks if selected blog is null.
             if (blog == null)
             {
+                //Returns 404 Not Found error message.
                 return NotFound();
             }
 
+            //Passes retrieved details to the Delete view.
             return View(blog);
         }
 
-        // POST: Admin/Blog/Delete/5
+        // POST - Method to Delete a blog.
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

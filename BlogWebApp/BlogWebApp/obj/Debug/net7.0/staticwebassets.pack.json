@@ -49,6 +49,10 @@
       "PackagePath": "staticwebassets\\blogImages\\images\\a1cb1619-11ce-4058-9a19-822bb130a4f9.jpg"
     },
     {
+      "Id": "C:\\Users\\ronia\\source\\repos\\COMP3000_PROJECT_rpalatty1\\BlogWebApp\\BlogWebApp\\wwwroot\\blogImages\\images\\a48272a9-23b0-4a5c-b393-b5c454f1457c.jpg",
+      "PackagePath": "staticwebassets\\blogImages\\images\\a48272a9-23b0-4a5c-b393-b5c454f1457c.jpg"
+    },
+    {
       "Id": "C:\\Users\\ronia\\source\\repos\\COMP3000_PROJECT_rpalatty1\\BlogWebApp\\BlogWebApp\\wwwroot\\blogImages\\images\\eada249f-338d-4ec6-8f5c-13b7e80a17c1.jpg",
       "PackagePath": "staticwebassets\\blogImages\\images\\eada249f-338d-4ec6-8f5c-13b7e80a17c1.jpg"
     },
@@ -355,6 +359,10 @@
     {
       "Id": "C:\\Users\\ronia\\source\\repos\\COMP3000_PROJECT_rpalatty1\\BlogWebApp\\BlogWebApp\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "C:\\Users\\ronia\\source\\repos\\COMP3000_PROJECT_rpalatty1\\BlogWebApp\\BlogWebApp\\wwwroot\\my_logo.webp",
+      "PackagePath": "staticwebassets\\my_logo.webp"
     },
     {
       "Id": "C:\\Users\\ronia\\source\\repos\\COMP3000_PROJECT_rpalatty1\\BlogWebApp\\BlogWebApp\\wwwroot\\summernote\\font\\summernote.eot",

@@ -1,4 +1,5 @@
 ﻿using BlogWebApp.Data;
+using BlogWebApp.Data.Migrations;
 using BlogWebApp.Models;
 using BlogWebApp.Models.Comments;
 using BlogWebApp.Models.ViewModels;
@@ -19,16 +20,33 @@ namespace BlogWebApp.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        //public IActionResult Index()
+        //{
+        //    IEnumerable<Blog> objBlogList = _context.Blog.Include(b => b.ApplicationUser).Include(b => b.Category).Include(b => b.SubCategory);
+        //    return View(objBlogList);
+        //}
+
+        public async Task<IActionResult> Index( string searchString)
         {
+
+            ViewData["CurrentFilter"] = searchString;
             IEnumerable<Blog> objBlogList = _context.Blog.Include(b => b.ApplicationUser).Include(b => b.Category).Include(b => b.SubCategory);
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                objBlogList = objBlogList.Where(b => b.Title.Contains(searchString)
+                                       || b.Tags.Contains(searchString));
+            }
+            
             return View(objBlogList);
         }
 
         public IActionResult CategoryWiseBlog(string? categoryName)
         {
-            IEnumerable<Blog> objBlogList = _context.Blog.Include(b => b.ApplicationUser).Include(b => b.Category).Where(b => b.Category.CategoryName == categoryName).Include(b => b.SubCategory);
-            return View(objBlogList);
+            IEnumerable<Blog> objBlogList = _context.Blog.Include(b => b.ApplicationUser).Include(b => b.Category).Include(b => b.SubCategory);
+            IEnumerable<Blog> catBlogList = objBlogList.Where(b => b.Category.CategoryName == categoryName).ToList(); // To materialize the query and get the filtered list
+
+            return View(catBlogList);
         }
 
         public IActionResult TitleWiseBlog(string? categoryName, string? title)
