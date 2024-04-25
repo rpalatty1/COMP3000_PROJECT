@@ -18,11 +18,7 @@
             <input type="hidden" asp-for="blog.ApplicationUserId" />
             <input type="hidden" asp-for="blog.ModifiedBy" />
             <input type="hidden" asp-for="blog.Slug" />
-            @*<div class="form-group">
-            <label asp-for="blog.CategoryId" class="control-label"></label>
-            <select asp-for="blog.CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
-            <span asp-validation-for="blog.CategoryId" class="text-danger"></span>
-            </div>*@
+
             <div class="col-md-6">
                 <label class="form-label" asp-for="blog.CategoryId"></label>
                 <select asp-for="blog.CategoryId" asp-items="@Model.CategoryList" class="form-control">
@@ -30,11 +26,7 @@
                 </select>
                 <span asp-validation-for="blog.CategoryId" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
-            <label asp-for="blog.SubCategoryId" class="control-label"></label>
-            <select asp-for="blog.SubCategoryId" class="form-control" asp-items="ViewBag.SubCategoryId"></select>
-            <span asp-validation-for="blog.SubCategoryId" class="text-danger"></span>
-            </div>*@
+
             <div class="col-md-6">
                 <label class="form-label" asp-for="blog.SubCategoryId"></label>
                 <select asp-for="blog.SubCategoryId" asp-items="@Model.SubCategoryList" class="form-control">
@@ -47,11 +39,7 @@
                 <input asp-for="blog.Title" class="form-control" />
                 <span asp-validation-for="blog.Title" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
-            <label asp-for="blog.Slug" class="control-label"></label>
-            <input asp-for="blog.Slug" class="form-control" />
-            <span asp-validation-for="blog.Slug" class="text-danger"></span>
-            </div>*@
+
             <div class="form-group">
                 <label asp-for="blog.Tags" class="control-label"></label>
                 <input asp-for="blog.Tags" class="form-control" />
@@ -78,37 +66,14 @@
                     <input class="form-check-input" asp-for="blog.IsActive" /> @Html.DisplayNameFor(model => model.blog.IsActive)
                 </label>
             </div>
-            @*<input type="hidden" asp-for="blog.Id" />
-            <div class="form-group">
-            <label asp-for="blog.ApplicationUserId" class="control-label"></label>
-            <select asp-for="blog.ApplicationUserId" class="form-control" asp-items="ViewBag.ApplicationUserId"></select>
-            <span asp-validation-for="blog.ApplicationUserId" class="text-danger"></span>
-            <input type="hidden" asp-for="blog.Id" />
-            </div>
-            <div class="form-group">
-            <label asp-for="blog.CreatedDate" class="control-label"></label>
-            <input asp-for="blog.CreatedDate" class="form-control" />
-            <span asp-validation-for="blog.CreatedDate" class="text-danger"></span>
-            <input type="hidden" asp-for="blog.Id" />
-            </div>
-            <div class="form-group">
-            <label asp-for="blog.CreatedBy" class="control-label"></label>
-            <input asp-for="blog.CreatedBy" class="form-control" />
-            <span asp-validation-for="blog.CreatedBy" class="text-danger"></span>
-            <input type="hidden" asp-for="blog.Id" />
-            </div>*@
+            
             <div class="form-group">
                 <label asp-for="blog.ModifiedDate" class="control-label"></label>
                 <input asp-for="blog.ModifiedDate" class="form-control" />
                 <span asp-validation-for="blog.ModifiedDate" class="text-danger"></span>
                 <input type="hidden" asp-for="blog.Id" />
             </div>
-            @*<div class="form-group">
-            <label asp-for="blog.ModifiedBy" class="control-label"></label>
-            <input asp-for="blog.ModifiedBy" class="form-control" />
-            <span asp-validation-for="blog.ModifiedBy" class="text-danger"></span>
-            <input type="hidden" asp-for="blog.Id" />
-            </div>*@
+
             <div class="col-md-12">
                 <button type="submit" class="btn btn-success">
                     <i class="bi bi-plus-circle"></i>
@@ -122,9 +87,7 @@
     </div>
 </div>
 
-@*<div>
-    <a asp-action="Index">Back to List</a>
-</div>*@
+
 
 @section Scripts {
     @{
