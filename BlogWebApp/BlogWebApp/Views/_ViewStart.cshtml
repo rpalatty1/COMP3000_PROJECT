@@ -1,13 +1,13 @@
 ﻿@{
-    if (this.User.IsInRole("Admin") || this.User.Identity.IsAuthenticated)
+    if (this.User.IsInRole("Admin") && this.User.Identity.IsAuthenticated)
     {
         Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
     }
-    else if (this.User.IsInRole("Author") || this.User.Identity.IsAuthenticated)
+    else if (this.User.IsInRole("Author") && this.User.Identity.IsAuthenticated)
     {
         Layout = "~/Views/Shared/_LayoutAuthor.cshtml";
     }
-    else if (this.User.IsInRole("Subscriber") || this.User.Identity.IsAuthenticated)
+    else if (this.User.IsInRole("Subscriber") && this.User.Identity.IsAuthenticated)
     {
         Layout = "~/Views/Shared/_LayoutSubscriber.cshtml";
     }
