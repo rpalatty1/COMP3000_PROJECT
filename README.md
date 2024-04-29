@@ -40,7 +40,7 @@ To view or add comments, you will need to log into your account.
 
 Don't have an account? Register for one.
 
-![](images/register.JPG = 475x329)
+![](images/register.JPG)
 
 Use the search functionality at the top of the page to find blogs by title or tags, or use the 'Categories' dropdown to find blogs within that category.
 
