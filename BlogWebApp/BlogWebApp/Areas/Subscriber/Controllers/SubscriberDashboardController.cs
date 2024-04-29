@@ -7,6 +7,8 @@ using System.Diagnostics;
 namespace BlogWebApp.Controllers
 {
     [Area("Subscriber")]
+
+    //Returns Index view.
     public class SubscriberDashboardController : Controller
     {
         public IActionResult Index()

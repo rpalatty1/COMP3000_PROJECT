@@ -3,22 +3,6 @@
 }
 
 
-
-@*<div class="row mb-2">
-    <h1>@Model.Title</h1>
-    <div class="col p-4 d-flex flex-column position-static">
-        <h2 class="display-5 link-body-emphasis mb-1">@Model.Title</h2>
-        <strong class="d-inline-block mb-2 text-primary">@Model.Category.CategoryName</strong>
-        <h3 class="mb-0">@Model.Title</h3>
-        <div class="mb-1 text-muted">@Model.CreatedDate</div>
-        <p class="card-text mb-auto">@Model.Description</p>
-        <div class="col-auto d-none d-lg-block">
-            <img class="img-fluid" src="@Model.TitleImageUrl" style="width:500px;height:500px">
-        </div>
-    </div>
-    <div>@Html.Raw(Model.Content)</div>
-    <div class="summernote">@Model.Content</div>*@
-
 <div class="row mb-2">
     <div class="leftcolumn">
     <div class="card">
@@ -32,23 +16,5 @@
     </div>
 </div>
 
-
-   @* @foreach (var item in Model)
-    {
-        <div class="col-md-12">
-            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                <div class="col p-4 d-flex flex-column position-static">
-                    <strong class="d-inline-block mb-2 text-primary">@item.Category.CategoryName</strong>
-                    <h3 class="mb-0">@item.Title</h3>
-                    <div class="mb-1 text-muted">@item.CreatedDate</div>
-                    <p class="card-text mb-auto">@item.Description</p>
-                    <a href="/blog/@item.Category.CategorySlug/@item.Slug" title="@item.Title" class="stretched-link">Continue reading</a>
-                </div>
-                <div class="col-auto d-none d-lg-block">
-                    <img class="img-fluid" src="@item.TitleImageUrl" style="width:100px;height:100px">
-                </div>
-            </div>
-        </div>
-    }*@
 
 </div>

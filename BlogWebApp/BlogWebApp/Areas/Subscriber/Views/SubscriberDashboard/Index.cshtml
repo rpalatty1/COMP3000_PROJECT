@@ -1,35 +1,19 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿
 @{
 }
 
-<h1>This is the Subscriber Dashboard!</h1>
-
-@*@{
-    ViewData["Title"] = "Home Page";
-}
-
-<div class="row mb-2">
-    @foreach (var item in Model)
-    {
-        <div class="col-md-12">
-            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                <div class="col p-4 d-flex flex-column position-static">
-                    <strong class="d-inline-block mb-2 text-primary">@item.Category.CategoryName</strong>
-                    <h3 class="mb-0">@item.Title</h3>
-                    <div class="mb-1 text-muted">@item.CreatedDate</div>
-                    <p class="card-text mb-auto">@item.Description</p>
-                    <a href="/blog/@item.Category.CategorySlug/@item.Slug" title="@item.Title" class="stretched-link">Continue reading</a>
-                </div>
-                <div class="col-auto d-none d-lg-block">
-                    <img class="img-fluid" src="@item.TitleImageUrl" style="width:200px;height:200px">
-                </div>
-            </div>
-        </div>
-    }
-</div>
-*@
+<h3>Welcome Subscriber! :D</h3>
+<p><strong>Welcome to BeMe! Are you ready to find your inspiration? </strong></p>
+<p>Hold your horses! Please remember to read the privacy page before you start creating blogs.</p>
+<p><strong>To interact with blogs:</strong></p>
+<ul>
+    <li>Please refrain from writing mean comments.</li>
+    <li>Please refrain comment anything inappropriate.</li>
+    <li>Please refrain from including personal information in your comments.</li>
+</ul>
+<p>Comments are monitored by our administrators. Please think twice before commenting!</p>
+<p>Want to delete a comment? No worries, contact us and we'd be happy to remove it! :)</p>
+<p>To view all blogs and add comments, use the 'Home' page :D</p>
 
 
 
