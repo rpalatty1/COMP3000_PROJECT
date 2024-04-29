@@ -23,7 +23,7 @@ To access this, you need to log in using admin credentials. This is only used fo
 
 ## Author side:
 
-To access this, amke sure to select 'Author' in the role dropdown during account registration.
+To access this, make sure to select 'Author' in the role dropdown during account registration.
 The main purpose of an author is to create and publish blogs. You can access your blogs using 'Blog' in the navigation bar.
 
 ## Subscriber side:
